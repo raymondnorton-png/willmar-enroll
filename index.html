@@ -7,37 +7,45 @@
     <style>
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
         h1, h2 { color: #003087; }
-        .download-btn {
-            display: inline-block; background-color: #003087; color: white; padding: 15px 30px;
-            font-size: 1.2em; text-decoration: none; border-radius: 8px; margin: 20px 0;
-        }
+        .btn { display: inline-block; background-color: #003087; color: white; padding: 15px 30px; font-size: 1.2em; text-decoration: none; border-radius: 8px; margin: 15px 0; }
         .note { background-color: #f0f0f0; padding: 15px; border-left: 5px solid #003087; }
     </style>
 </head>
 <body>
     <h1>Willmar Public Schools - Device Enrollment</h1>
     
-    <p><strong>You are connected to the temporary "Enroll" network.</strong></p>
-    <p>Password: <strong>enroll2526</strong></p>
+    <p><strong>You are connected to the Enroll network</strong> (password: enroll2526)</p>
 
-    <h2>Step 1: Download & Install the Willmar RADIUS Certificate</h2>
-    
-    <a href="Willmar-RADIUS-Server.cer" class="download-btn">📥 Download School RADIUS Certificate</a>
-
-    <h3>For Android Devices (BYOD):</h3>
+    <h2>Step 1: Add Your Willmar Account (if not already added)</h2>
     <ol>
-        <li>Tap the downloaded <strong>Willmar-RADIUS-Server.cer</strong> file.</li>
-        <li>Tap <strong>Install</strong> when prompted.</li>
-        <li>Choose certificate storage (VPN and apps or Wi-Fi).</li>
+        <li>Open <strong>Settings</strong> on your Android device</li>
+        <li>Go to <strong>Accounts</strong> (or Passwords & accounts)</li>
+        <li>Tap <strong>Add account</strong> → <strong>Google</strong></li>
+        <li>Enter your email: <strong>username@willmar.k12.mn.us</strong></li>
+        <li>Sign in with your Willmar password</li>
     </ol>
 
-    <h2>Step 2: Connect to the Secure Network</h2>
+    <h2>Step 2: Download School Certificate</h2>
+    <a href="Willmar-RADIUS-Server.cer" class="btn">📥 Download Willmar RADIUS Certificate</a>
+
+    <p><strong>After downloading:</strong> Tap the file and tap <strong>Install</strong>.</p>
+
+    <h2>Step 3: Install Network Profile (Recommended)</h2>
     <ol>
-        <li>Forget the "Enroll" network.</li>
-        <li>Select your main <strong>Staff</strong> or <strong>Student</strong> SSID.</li>
-        <li>Enter your Willmar credentials when prompted.</li>
+        <li>Open <strong>Google Play Store</strong></li>
+        <li>Search for and install <strong>HPE Aruba Networking Onboard</strong></li>
+        <li>Open the app</li>
+        <li>Sign in with your <strong>willmar.k12.mn.us</strong> account</li>
+        <li>Follow the prompts — it will install the profile and certificate</li>
     </ol>
 
-    <p><strong>You're done!</strong></p>
+    <h2>Step 4: Connect to Secure Network</h2>
+    <ol>
+        <li>Forget the "Enroll" network</li>
+        <li>Select your <strong>Staff</strong> or <strong>Student</strong> network</li>
+        <li>Enter your Willmar username and password when prompted</li>
+    </ol>
+
+    <p class="note"><strong>You're done!</strong> Contact tech support if you have any issues.</p>
 </body>
 </html>
