@@ -16,34 +16,35 @@
     
     <p><strong>You are connected to the Enroll network</strong> (password: enroll2526)</p>
 
-    <h2>Step 1: Add Your Willmar Account (if needed)</h2>
-    <ol>
-        <li>Open <strong>Settings</strong> → <strong>Accounts</strong></li>
-        <li>Tap <strong>Add account</strong> → <strong>Google</strong></li>
-        <li>Enter <strong>username@willmar.k12.mn.us</strong> and sign in</li>
-    </ol>
-
-    <h2>Step 2: Download School Certificate</h2>
+    <h2>Step 1: Download & Install Certificate</h2>
     <a href="Willmar-RADIUS-Server.cer" class="btn">📥 Download Willmar RADIUS Certificate</a>
 
-    <h2>Step 3: Install Aruba Onboard App (Recommended)</h2>
-    <a href="https://play.google.com/store/apps/details?id=com.aruba.onboard" class="btn" target="_blank">
-        📱 Open Play Store - HPE Aruba Networking Onboard
-    </a>
+    <p><strong>After downloading:</strong> Open the file and tap <strong>Install</strong> (choose Wi-Fi or VPN & apps if prompted).</p>
 
-    <ol>
-        <li>Install and open the <strong>HPE Aruba Networking Onboard</strong> app</li>
-        <li>Sign in with your <strong>willmar.k12.mn.us</strong> account</li>
-        <li>Follow the prompts to install the profile & certificate</li>
-    </ol>
+    <h2>Step 2: Connect to Staff / Student Network</h2>
 
-    <h2>Step 4: Connect to Secure Network</h2>
+    <h3>On Android:</h3>
     <ol>
         <li>Forget the "Enroll" network</li>
-        <li>Select your <strong>Staff</strong> or <strong>Student</strong> network</li>
-        <li>Enter your Willmar username and password when prompted</li>
+        <li>Go to Wi-Fi settings and select your main <strong>Staff</strong> or <strong>Student</strong> network</li>
+        <li>Choose <strong>WPA2-Enterprise</strong> (or WPA3-Enterprise)</li>
+        <li>EAP method: <strong>PEAP</strong></li>
+        <li>Phase 2 authentication: <strong>MSCHAPv2</strong></li>
+        <li>CA certificate: Select the certificate you just installed (or "Do not validate" / "Default")</li>
+        <li>Identity / Username: <strong>username@willmar.k12.mn.us</strong></li>
+        <li>Password: Your Willmar password</li>
+        <li>Tap Connect</li>
     </ol>
 
-    <p class="note"><strong>You're done!</strong> Contact tech support if you have any issues.</p>
+    <h3>On Chromebooks:</h3>
+    <ol>
+        <li>Click the clock → Settings → Network → Wi-Fi</li>
+        <li>Select your main Staff or Student network</li>
+        <li>Use the same settings as above</li>
+    </ol>
+
+    <p class="note"><strong>After connecting successfully:</strong> Forget the Enroll network.</p>
+
+    <p>If you run into issues, contact tech support.</p>
 </body>
 </html>
