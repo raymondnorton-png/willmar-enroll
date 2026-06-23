@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Equipment Selector — Form 470</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f4;
+    --bg-tertiary: #eeece8;
+    --bg-info: #e6f1fb;
+    --bg-success: #eaf3de;
+    --bg-warning: #faeeda;
+    --bg-danger: #fcebeb;
+    --text: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --text-tertiary: #9a9a9a;
+    --text-info: #0c447c;
+    --text-success: #27500a;
+    --text-warning: #633806;
+    --text-danger: #a32d2d;
+    --border: rgba(0,0,0,0.12);
+    --border-secondary: rgba(0,0,0,0.22);
+    --border-info: #b5d4f4;
+    --border-success: #c0dd97;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --blue: #185FA5;
+    --blue-dark: #0c447c;
+    --blue-light: #e6f1fb;
+    --green-light: #eaf3de;
+    --green-dark: #27500a;
+    --red-light: #fcebeb;
+    --red-dark: #a32d2d;
+    --amber: #ba7517;
+    --amber-light: #faeeda;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1c;
+      --bg-secondary: #252525;
+      --bg-tertiary: #2e2e2e;
+      --bg-info: #0c2a45;
+      --bg-success: #162808;
+      --bg-warning: #2d1f06;
+      --bg-danger: #2d1010;
+      --text: #e8e8e6;
+      --text-secondary: #a0a09c;
+      --text-tertiary: #6a6a66;
+      --text-info: #85b7eb;
+      --text-success: #97c459;
+      --text-warning: #fac775;
+      --text-danger: #f09595;
+      --border: rgba(255,255,255,0.1);
+      --border-secondary: rgba(255,255,255,0.18);
+      --border-info: #185fa5;
+      --border-success: #3b6d11;
+      --blue-light: #0c2a45;
+      --blue: #378add;
+      --blue-dark: #85b7eb;
+      --green-light: #162808;
+      --green-dark: #c0dd97;
+      --red-light: #2d1010;
+      --red-dark: #f09595;
+      --amber-light: #2d1f06;
+      --amber: #fac775;
+    }
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .page-header {
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .page-header .logo {
+    width: 32px; height: 32px;
+    background: var(--blue);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; flex-shrink: 0;
+  }
+  .page-header h1 { font-size: 17px; font-weight: 500; color: var(--text); }
+  .page-header p { font-size: 13px; color: var(--text-secondary); }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  .tab-bar {
+    display: flex;
+    border: 0.5px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    width: fit-content;
+    margin-bottom: 1.75rem;
+    background: var(--bg);
+  }
+  .tab {
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    border-right: 0.5px solid var(--border-secondary);
+    transition: all .15s;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tab:last-child { border-right: none; }
+  .tab.active { background: var(--blue); color: #fff; }
+  .tab i { font-size: 17px; }
+
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: .4rem;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .feat-group { margin-bottom: 1.5rem; }
+  .group-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 5px;
+  }
+  .feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 9px 11px;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    background: var(--bg);
+    transition: background .1s;
+    user-select: none;
+  }
+  .feat-item:hover { background: var(--bg-secondary); }
+  .feat-item.on { background: var(--blue-light); border-color: var(--border-info); }
+  .feat-item input[type=checkbox] { margin-top: 2px; accent-color: var(--blue); cursor: pointer; flex-shrink: 0; }
+  .feat-item label { font-size: 13px; color: var(--text); cursor: pointer; line-height: 1.4; }
+  .feat-item.on label { color: var(--text-info); }
+
+  .importance-row { display: flex; gap: 5px; margin-top: 7px; }
+  .imp-btn {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 0.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text-secondary);
+    transition: all .1s;
+    font-weight: 500;
+  }
+  .imp-btn:hover { background: var(--bg-secondary); }
+  .imp-btn.req { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .imp-btn.pref { background: var(--green-light); color: var(--green-dark); border-color: var(--border-success); }
+
+  .action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .btn {
+    padding: 9px 18px;
+    border: 0.5px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text);
+    transition: all .12s;
+  }
+  .btn:hover { background: var(--bg-secondary); }
+  .btn:active { transform: scale(.98); }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+  }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-primary:disabled { opacity: .35; cursor: default; transform: none; }
+  .sel-count { font-size: 13px; color: var(--text-secondary); }
+
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .prod-card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 12px;
+  }
+  .prod-card.best { border: 1.5px solid var(--blue); }
+
+  .prod-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .prod-name { font-size: 15px; font-weight: 500; color: var(--text); }
+  .prod-brand { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  .badge {
+    font-size: 11px;
+    padding: 3px 11px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-best { background: var(--blue-light); color: var(--blue); }
+  .badge-alt { background: var(--bg-secondary); color: var(--text-secondary); }
+
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .bar-bg {
+    flex: 1;
+    height: 5px;
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fg { height: 100%; border-radius: 3px; transition: width .4s ease; }
+  .bar-fg.high { background: var(--blue); }
+  .bar-fg.med { background: var(--amber); }
+  .bar-fg.low { background: #e24b4a; }
+  .score-pct { font-size: 12px; font-weight: 500; min-width: 34px; text-align: right; }
+  .score-pct.high { color: var(--blue); }
+  .score-pct.med { color: var(--amber); }
+  .score-pct.low { color: var(--red-dark); }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: var(--radius-sm); line-height: 1.6; }
+  .tag-req-hit { background: var(--green-light); color: var(--green-dark); }
+  .tag-pref-hit { background: var(--blue-light); color: var(--text-info); }
+  .tag-miss { background: var(--red-light); color: var(--red-dark); text-decoration: line-through; opacity: .65; }
+
+  .prod-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 12px; }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+  }
+  .spec-item {
+    font-size: 11px;
+    padding: 6px 9px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    line-height: 1.4;
+  }
+  .spec-item strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 2px; font-size: 11px; }
+
+  .prod-card.selected { border: 1.5px solid var(--green,#27500a); background: var(--green-light,#eaf3de); }
+  .prod-card.selected .prod-name { color: var(--green,#27500a); }
+  .select-footer {
+    display: flex; align-items: center; gap: 10px;
+    padding: .75rem 1.25rem; border-top: 0.5px solid var(--border);
+    background: var(--bg-secondary); flex-wrap: wrap;
+  }
+  .qty-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+  .qty-input {
+    width: 70px; padding: 6px 10px; font-size: 14px; font-weight: 500;
+    border: 0.5px solid var(--border-secondary); border-radius: var(--radius-md);
+    background: var(--bg); color: var(--text); outline: none; text-align: center;
+  }
+  .qty-input:focus { border-color: var(--blue); }
+  .btn-select {
+    padding: 7px 18px; background: var(--blue); color: #fff;
+    border: none; border-radius: var(--radius-md); font-size: 13px;
+    font-weight: 500; cursor: pointer; white-space: nowrap;
+  }
+  .btn-select:hover { background: var(--blue-dark); }
+  .btn-select.selected-state {
+    background: var(--green-light,#eaf3de); color: var(--green,#27500a);
+    border: 0.5px solid var(--green-border,#c0dd97);
+  }
+  .select-msg { font-size: 12px; color: var(--text-secondary); }
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    border: 0.5px dashed var(--border-secondary);
+    border-radius: var(--radius-lg);
+  }
+
+  /* District screen */
+  .district-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .district-card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+  }
+  .district-card .logo {
+    width: 48px; height: 48px;
+    background: var(--blue);
+    border-radius: var(--radius-lg);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px;
+    margin: 0 auto 1.25rem;
+  }
+  .district-card h1 { font-size: 20px; font-weight: 500; margin-bottom: .4rem; }
+  .district-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  .district-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 0.5px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    margin-bottom: 10px;
+    transition: border-color .15s;
+  }
+  .district-input:focus { border-color: var(--blue); }
+  .district-btn {
+    width: 100%;
+    padding: 11px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .district-btn:hover { background: var(--blue-dark); }
+  .district-btn:disabled { opacity: .4; cursor: default; }
+  .district-msg { font-size: 13px; margin-top: 10px; min-height: 20px; }
+  .district-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; padding: 5px 12px;
+    background: var(--blue-light); color: var(--text-info);
+    border-radius: var(--radius-md);
+    margin-left: auto;
+  }
+  .district-badge button {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-tertiary); font-size: 14px; padding: 0; line-height: 1;
+  }
+  .district-badge button:hover { color: var(--red-dark); }
+
+  /* Contact info screen */
+  .contact-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: var(--bg-tertiary);
+  }
+  .contact-card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2rem 2.5rem;
+    width: 100%;
+    max-width: 680px;
+  }
+  .contact-card .card-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: .4rem;
+  }
+  .contact-card .card-header .logo {
+    width: 36px; height: 36px; background: var(--blue);
+    border-radius: var(--radius-md); display: flex; align-items: center;
+    justify-content: center; color: #fff; font-size: 17px; flex-shrink: 0;
+  }
+  .contact-card h2 { font-size: 19px; font-weight: 500; }
+  .contact-card .subtitle { font-size: 13px; color: var(--text-secondary); margin-bottom: 1.75rem; margin-top: .3rem; }
+  .contact-section { margin-bottom: 1.5rem; }
+  .contact-section-title {
+    font-size: 12px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: .07em; color: var(--text-tertiary);
+    margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .contact-grid.single { grid-template-columns: 1fr; }
+  .contact-field { display: flex; flex-direction: column; gap: 4px; }
+  .contact-field label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .contact-field input, .contact-field textarea {
+    padding: 8px 11px;
+    font-size: 13px;
+    border: 0.5px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    font-family: inherit;
+    transition: border-color .15s;
+  }
+  .contact-field input:focus, .contact-field textarea:focus { border-color: var(--blue); }
+  .contact-field textarea { resize: vertical; min-height: 72px; }
+  .contact-field .required-mark { color: var(--red-dark); margin-left: 2px; }
+  .contact-footer {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 1.75rem; padding-top: 1.25rem;
+    border-top: 0.5px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .progress-steps {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--text-tertiary); margin-bottom: 1.5rem;
+  }
+  .progress-step {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: var(--border-radius-md,6px);
+  }
+  .progress-step.done { color: var(--text-success,#27500a); }
+  .progress-step.active { color: var(--blue); font-weight: 500; }
+  .progress-sep { color: var(--border-secondary); }
+
+  @media (max-width: 600px) {
+    .page-header { padding: .75rem 1rem; }
+    .container { padding: 1rem; }
+    .tab { padding: 9px 14px; font-size: 13px; }
+    .feat-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header" id="main-header" style="display:none">
+  <div class="logo"><i class="ti ti-network" aria-hidden="true"></i></div>
+  <div style="flex:1">
+    <h1>Network Equipment Selector</h1>
+    <p>Form 470 — Wireless APs &amp; Network Switches</p>
+  </div>
+  <div class="district-badge" id="district-badge">
+    <i class="ti ti-building-community" aria-hidden="true"></i>
+    <span id="district-badge-name"></span>
+    <button onclick="changeDistrict()" title="Switch district">✕</button>
+  </div>
+</header>
+
+<!-- District entry screen -->
+<div class="district-screen" id="district-screen">
+  <div class="district-card">
+    <div class="logo"><i class="ti ti-building-community" aria-hidden="true"></i></div>
+    <h1>Network Equipment Selector</h1>
+    <p>Enter your school district name to load or create your equipment library. Your library is saved to a dedicated Google Sheet in our shared drive.</p>
+    <input class="district-input" id="district-input" type="text" placeholder="e.g. Pipestone Area Schools" autocomplete="organization"
+      onkeydown="if(event.key==='Enter') connectDistrict()">
+    <button class="district-btn" id="district-btn" onclick="connectDistrict()">Connect to library</button>
+    <div class="district-msg" id="district-msg"></div>
+  </div>
+</div>
+
+<!-- Contact info screen (Step 2) -->
+<div class="contact-screen" id="contact-screen" style="display:none">
+  <div class="contact-card">
+    <div class="card-header">
+      <div class="logo"><i class="ti ti-id-badge" aria-hidden="true"></i></div>
+      <h2>District Contact Information</h2>
+    </div>
+    <p class="subtitle">SWWC E-Rate — FY2027 &nbsp;·&nbsp; Please complete all contact details before selecting hardware. This information is saved to your district's library.</p>
+
+    <div class="progress-steps">
+      <span class="progress-step done"><i class="ti ti-check" aria-hidden="true"></i> District connected</span>
+      <span class="progress-sep">›</span>
+      <span class="progress-step active"><i class="ti ti-user" aria-hidden="true"></i> Contact info</span>
+      <span class="progress-sep">›</span>
+      <span class="progress-step"><i class="ti ti-devices" aria-hidden="true"></i> Hardware selection</span>
+    </div>
+
+    <!-- EPC Account Administrator -->
+    <div class="contact-section">
+      <div class="contact-section-title">EPC Account Administrator <span style="font-weight:400;color:var(--text-tertiary)">(main E-Rate point of contact with administrator rights in EPC)</span></div>
+      <div class="contact-grid">
+        <div class="contact-field">
+          <label>Full name <span class="required-mark">*</span></label>
+          <input type="text" id="ci-epc-name" placeholder="First Last" autocomplete="name">
+        </div>
+        <div class="contact-field">
+          <label>Title</label>
+          <input type="text" id="ci-epc-title" placeholder="e.g. Director of Technology">
+        </div>
+        <div class="contact-field">
+          <label>Phone number</label>
+          <input type="tel" id="ci-epc-phone" placeholder="(555) 555-5555">
+        </div>
+        <div class="contact-field">
+          <label>Email address <span class="required-mark">*</span></label>
+          <input type="email" id="ci-epc-email" placeholder="name@district.org">
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology Support Individual -->
+    <div class="contact-section">
+      <div class="contact-section-title">Technology Support Individual</div>
+      <div class="contact-grid">
+        <div class="contact-field">
+          <label>Full name <span class="required-mark">*</span></label>
+          <input type="text" id="ci-tech-name" placeholder="First Last">
+        </div>
+        <div class="contact-field">
+          <label>Title</label>
+          <input type="text" id="ci-tech-title" placeholder="e.g. Network Administrator">
+        </div>
+        <div class="contact-field">
+          <label>Phone number <span class="required-mark">*</span></label>
+          <input type="tel" id="ci-tech-phone" placeholder="(555) 555-5555">
+        </div>
+        <div class="contact-field">
+          <label>Email address <span class="required-mark">*</span></label>
+          <input type="email" id="ci-tech-email" placeholder="name@district.org">
+        </div>
+      </div>
+    </div>
+
+    <!-- Superintendent -->
+    <div class="contact-section">
+      <div class="contact-section-title">Superintendent</div>
+      <div class="contact-grid">
+        <div class="contact-field">
+          <label>Full name</label>
+          <input type="text" id="ci-super-name" placeholder="First Last">
+        </div>
+        <div class="contact-field">
+          <label>Phone number</label>
+          <input type="tel" id="ci-super-phone" placeholder="(555) 555-5555">
+        </div>
+        <div class="contact-field">
+          <label>Email address</label>
+          <input type="email" id="ci-super-email" placeholder="name@district.org">
+        </div>
+      </div>
+    </div>
+
+    <!-- Other key contacts -->
+    <div class="contact-section">
+      <div class="contact-section-title">Other key contacts <span style="font-weight:400;color:var(--text-tertiary)">(optional)</span></div>
+      <div class="contact-grid single">
+        <div class="contact-field">
+          <label>Additional contacts — include name, title, phone number, and email address</label>
+          <textarea id="ci-other-contacts" placeholder="e.g. Jane Smith, Business Manager, (555) 555-1234, jsmith@district.org"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-footer">
+      <button class="btn" onclick="goBackToDistrict()" style="padding:10px 18px">← Back</button>
+      <button class="district-btn" id="contact-submit-btn" onclick="submitContactInfo()" style="width:auto;padding:10px 28px">
+        Save &amp; continue →
+      </button>
+      <span id="contact-msg" style="font-size:13px;color:var(--text-secondary)"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Category 1 prompt screen -->
+<div class="contact-screen" id="cat1-prompt-screen" style="display:none">
+  <div class="contact-card" style="max-width:560px;text-align:center">
+    <div class="card-header" style="justify-content:center;margin-bottom:.5rem">
+      <div class="logo"><i class="ti ti-wifi" aria-hidden="true"></i></div>
+      <h2>Category 1 Services</h2>
+    </div>
+    <p class="subtitle" style="text-align:center">Category 1 covers internet access and wide area network (WAN) services such as broadband, fiber connections, and data transmission.</p>
+
+    <div class="progress-steps" style="justify-content:center">
+      <span class="progress-step done"><i class="ti ti-check"></i> District connected</span>
+      <span class="progress-sep">›</span>
+      <span class="progress-step done"><i class="ti ti-check"></i> Contact info</span>
+      <span class="progress-sep">›</span>
+      <span class="progress-step active"><i class="ti ti-wifi"></i> Category 1</span>
+      <span class="progress-sep">›</span>
+      <span class="progress-step"><i class="ti ti-devices"></i> Category 2</span>
+    </div>
+
+    <div style="background:var(--bg-secondary);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:2rem;margin-bottom:1.5rem">
+      <div style="font-size:17px;font-weight:500;color:var(--text);margin-bottom:.75rem">Does your district have Category 1 service needs for FY2027?</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:1.5rem">This includes internet access, fiber connections, broadband, or WAN services between buildings.</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button onclick="handleCat1Choice(true)" style="padding:12px 32px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius-md);font-size:15px;font-weight:500;cursor:pointer;min-width:140px">
+          Yes — I have Category 1 needs
+        </button>
+        <button onclick="handleCat1Choice(false)" style="padding:12px 32px;background:var(--bg);color:var(--text);border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);font-size:15px;font-weight:500;cursor:pointer;min-width:140px">
+          No — skip to Category 2
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container" id="main-app" style="display:none">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:1.75rem">
+    <div class="tab-bar" style="flex-wrap:wrap;margin-bottom:0">
+    <button class="tab" id="tab-cat1" onclick="switchTab('cat1')" style="display:none">
+      <i class="ti ti-wifi" aria-hidden="true"></i>Category 1
+    </button>
+    <button class="tab active" id="tab-ap" onclick="switchTab('ap')">
+      <i class="ti ti-wifi" aria-hidden="true"></i>Wireless APs
+    </button>
+    <button class="tab" id="tab-sw" onclick="switchTab('sw')">
+      <i class="ti ti-topology-star-3" aria-hidden="true"></i>Switches
+    </button>
+    <button class="tab" id="tab-fw" onclick="switchTab('fw')">
+      <i class="ti ti-shield-lock" aria-hidden="true"></i>Firewall
+    </button>
+    <button class="tab" id="tab-ups" onclick="switchTab('ups')">
+      <i class="ti ti-battery-charging" aria-hidden="true"></i>UPS
+    </button>
+    <button class="tab" id="tab-lic" onclick="switchTab('lic')">
+      <i class="ti ti-license" aria-hidden="true"></i>Licensing
+    </button>
+    <button class="tab" id="tab-acc" onclick="switchTab('acc')">
+      <i class="ti ti-server" aria-hidden="true"></i>Racks &amp; Components
+    </button>
+    <button class="tab" id="tab-history" onclick="switchTab('history')">
+      <i class="ti ti-history" aria-hidden="true"></i>Past submissions
+    </button>
+  </div>
+    <button onclick="resetAllSelections()" style="padding:8px 16px;font-size:13px;font-weight:500;border:0.5px solid var(--red-dark,#a32d2d);border-radius:var(--radius-md);background:var(--red-light,#fcebeb);color:var(--red-dark,#a32d2d);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px">
+      <i class="ti ti-refresh" style="font-size:14px"></i> Reset all selections
+    </button>
+  </div>
+
+  <!-- Category 1 pane -->
+  <div id="pane-cat1" style="display:none">
+    <div class="card">
+      <div class="section-title">Category 1 Services</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:1.75rem">Only data transmission and internet service are eligible for reimbursement at your discount rate.</div>
+
+      <div class="feat-group">
+        <div class="group-title" style="margin-bottom:1rem">Will you be applying for Category 1 Services?</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)" id="cat1-opt1-label">
+            <input type="radio" name="cat1-selection" id="cat1-opt1" value="option1" onchange="selectCat1Option(this)" style="accent-color:var(--blue);width:16px;height:16px;cursor:pointer">
+            <span><strong>Option 1:</strong> Basic Internet Services</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)" id="cat1-opt2-label">
+            <input type="radio" name="cat1-selection" id="cat1-opt2" value="option2" onchange="selectCat1Option(this)" style="accent-color:var(--blue);width:16px;height:16px;cursor:pointer">
+            <span><strong>Option 2:</strong> Digital Transmission Services - ATM, DSL, Frame Relay</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)" id="cat1-opt3-label">
+            <input type="radio" name="cat1-selection" id="cat1-opt3" value="option3" onchange="selectCat1Option(this)" style="accent-color:var(--blue);width:16px;height:16px;cursor:pointer">
+            <span><strong>Option 3:</strong> Both Options</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)" id="cat1-opt4-label">
+            <input type="radio" name="cat1-selection" id="cat1-opt4" value="option4" onchange="selectCat1Option(this)" style="accent-color:var(--blue);width:16px;height:16px;cursor:pointer">
+            <span><strong>Option 4:</strong> Not applying for Category 1</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-primary" onclick="saveCat1AndContinue()">Save &amp; continue to Category 2 →</button>
+        <span id="cat1-msg" style="font-size:13px;color:var(--text-secondary)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="pane-ap">
+    <div id="ap-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="ap-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="ap-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">Wireless access point features</div>
+      <div id="ap-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('ap')">Clear all</button>
+        <button class="btn btn-primary" id="ap-submit" onclick="showResults('ap')" disabled>Find matching APs</button>
+        <span class="sel-count" id="ap-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="ap-location" placeholder="e.g. High School, Elementary School, District Office" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="ap-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="ap-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="ap-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of an AP not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="ap-custom-name" type="text" placeholder="e.g. Ruckus R750" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="ap-custom-brand" type="text" placeholder="e.g. CommScope" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="ap-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="ap-custom-desc" type="text" placeholder="e.g. Wi-Fi 6E tri-band, 4×4, PoE+, cloud managed" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags — check all that apply to this product</label><div id="ap-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('ap')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="ap-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="ap-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="ap-results"></div>
+  </div>
+
+  <div id="pane-sw" style="display:none">
+    <div id="sw-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="sw-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="sw-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">Network switch features</div>
+      <div id="sw-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('sw')">Clear all</button>
+        <button class="btn btn-primary" id="sw-submit" onclick="showResults('sw')" disabled>Find matching switches</button>
+        <span class="sel-count" id="sw-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="sw-location" placeholder="e.g. High School MDF, Elementary IDF" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="sw-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="sw-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="sw-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of a switch not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="sw-custom-name" type="text" placeholder="e.g. Netgear M4350-48G4XF" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="sw-custom-brand" type="text" placeholder="e.g. Netgear" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="sw-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="sw-custom-desc" type="text" placeholder="e.g. 48-port PoE+, 10G uplinks, Layer 3, stackable" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags — check all that apply to this product</label><div id="sw-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('sw')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="sw-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="sw-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="sw-results"></div>
+  </div>
+
+  <!-- Firewall pane -->
+  <div id="pane-fw" style="display:none">
+    <div id="fw-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="fw-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="fw-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">Firewall / NGFW features</div>
+      <div id="fw-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('fw')">Clear all</button>
+        <button class="btn btn-primary" id="fw-submit" onclick="showResults('fw')" disabled>Find matching firewalls</button>
+        <span class="sel-count" id="fw-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="fw-location" placeholder="e.g. District Office, Main Data Center" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="fw-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="fw-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="fw-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of a firewall not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="fw-custom-name" type="text" placeholder="e.g. Palo Alto PA-440" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="fw-custom-brand" type="text" placeholder="e.g. Palo Alto" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="fw-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="fw-custom-desc" type="text" placeholder="e.g. NGFW, 10G WAN, IPS, 5yr license" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags</label><div id="fw-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('fw')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="fw-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="fw-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="fw-results"></div>
+  </div>
+
+  <!-- UPS pane -->
+  <div id="pane-ups" style="display:none">
+    <div id="ups-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="ups-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="ups-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">UPS features</div>
+      <div id="ups-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('ups')">Clear all</button>
+        <button class="btn btn-primary" id="ups-submit" onclick="showResults('ups')" disabled>Find matching UPS units</button>
+        <span class="sel-count" id="ups-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="ups-location" placeholder="e.g. High School Server Room, Elementary Closet A" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="ups-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="ups-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="ups-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of a UPS not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="ups-custom-name" type="text" placeholder="e.g. APC SMT1500RM2UC" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="ups-custom-brand" type="text" placeholder="e.g. APC" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="ups-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="ups-custom-desc" type="text" placeholder="e.g. 1500VA, rack-mount, lithium, network card" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags</label><div id="ups-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('ups')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="ups-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="ups-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="ups-results"></div>
+  </div>
+
+  <!-- Licensing pane -->
+  <div id="pane-lic" style="display:none">
+    <div id="lic-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="lic-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="lic-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">Licensing features</div>
+      <div id="lic-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('lic')">Clear all</button>
+        <button class="btn btn-primary" id="lic-submit" onclick="showResults('lic')" disabled>Find matching licenses</button>
+        <span class="sel-count" id="lic-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="lic-location" placeholder="e.g. All buildings district-wide" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="lic-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="lic-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="lic-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of a license not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="lic-custom-name" type="text" placeholder="e.g. Meraki MR Enterprise 3yr" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="lic-custom-brand" type="text" placeholder="e.g. Cisco Meraki" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="lic-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="lic-custom-desc" type="text" placeholder="e.g. 3-year cloud management license for APs" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags</label><div id="lic-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('lic')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="lic-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="lic-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="lic-results"></div>
+  </div>
+
+  <!-- Racks & Components pane -->
+  <div id="pane-acc" style="display:none">
+    <div id="acc-summary-top" class="card" style="display:none;border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div id="acc-summary-top-label" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">Selected products</div>
+      <div id="acc-summary-top-content"></div>
+    </div>
+    <div class="card">
+      <div class="step-label">Step 1 — Select your requirements</div>
+      <div class="section-title">Racks, cabinets &amp; components</div>
+      <div id="acc-feat-area"></div>
+      <div class="action-row">
+        <button class="btn" onclick="clearAll('acc')">Clear all</button>
+        <button class="btn btn-primary" id="acc-submit" onclick="showResults('acc')" disabled>Find matching products</button>
+        <span class="sel-count" id="acc-count"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step-label">Building / location</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Which building(s) or location(s) is this equipment for? List all that apply.</div>
+      <textarea id="acc-location" placeholder="e.g. High School MDF, Elementary Wiring Closet" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:72px;font-family:inherit"></textarea>
+    </div>
+    <div class="card">
+      <div class="step-label">Installation &amp; configuration</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:12px">Are you seeking installation and initial configuration?</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="acc-install" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="acc-install" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div class="step-label">Suggest a product for the library</div>
+        <span id="acc-library-status" style="font-size:12px"></span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Know of a rack, cable, or component not in our library? Submit it for admin review — approved products become available to all districts.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Product name</label><input id="acc-custom-name" type="text" placeholder="e.g. Tripp Lite 12U Wall Mount" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brand / manufacturer</label><input id="acc-custom-brand" type="text" placeholder="e.g. Tripp Lite" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+        <div><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Your name (optional)</label><input id="acc-custom-addedby" type="text" placeholder="e.g. Travis R." style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      </div>
+      <div style="margin-bottom:8px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Brief description (optional)</label><input id="acc-custom-desc" type="text" placeholder="e.g. 12U lockable wall cabinet, 19-inch" style="width:100%;padding:8px 10px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none"></div>
+      <div style="margin-bottom:12px"><label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px">Feature tags</label><div id="acc-custom-tags" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-primary" onclick="addCustomProduct('acc')" style="font-size:13px;padding:7px 16px">Submit for review</button><span id="acc-custom-msg" style="font-size:13px;color:var(--text-secondary)"></span></div>
+      <div id="acc-custom-list" style="margin-top:12px"></div>
+    </div>
+    <div id="acc-results"></div>
+  </div>
+
+  <!-- Past Submissions pane -->
+  <div id="pane-history" style="display:none">
+    <div class="card">
+      <div class="step-label">Past submissions</div>
+      <div class="section-title" style="margin-bottom:.5rem">Previous year selections</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">Review your district's hardware selections from previous fiscal years. Use "Copy to current year" to pre-fill your current selections as a starting point.</div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap">
+        <label style="font-size:13px;font-weight:500;color:var(--text)">Fiscal year:</label>
+        <select id="history-year-select" onchange="loadPastSubmissions()" style="padding:7px 12px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none">
+          <option value="">— select a year —</option>
+          <option value="FY2026">FY2026</option>
+          <option value="FY2025">FY2025</option>
+          <option value="FY2024">FY2024</option>
+          <option value="FY2023">FY2023</option>
+        </select>
+        <button class="btn" onclick="loadPastSubmissions()" style="font-size:13px">Load</button>
+        <span id="history-status" style="font-size:13px;color:var(--text-secondary)"></span>
+      </div>
+
+      <div id="history-content">
+        <div style="font-size:13px;color:var(--text-tertiary);font-style:italic">Select a fiscal year above to view past submissions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RFP Section -->
+  <div class="divider"></div>
+  <div class="card" id="rfp-section">
+    <div class="section-title" style="margin-bottom:.25rem">RFP's &mdash; <span style="color:var(--red-dark,#a32d2d)">All RFP's must be submitted by October 30th for consideration</span></div>
+
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:.85rem">
+      A Request for Proposal, or RFP, may be required if the services that are being sought by your organization are not able to be described through the limited abilities of a Form 470. An RFP must be accompanied by a Form 470 that is filed and references the RFP in the EPC system. In cases where an RFP is necessary, the RFP is not considered to be complete until its corresponding Form 470 is released, and the Form 470 is not considered to be complete until the corresponding RFP is released. An RFP must also abide by all competitive bidding rules that apply to a Form 470. An RFP allows for you to provide more information regarding project specifications, timelines, requirements, contract conditions, diagrams, layouts, and response requirements, to ensure that a vendor's proposal in response to your service request meet your requirements.
+    </div>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:1.5rem">
+      When might an RFP be required for E-Rate eligible services? Building infrastructure projects for new cable plant typically require an RFP. The provision and installation of equipment throughout your building, for example, access point placements. Equipping of a newly constructed building. Requests for dark or self-provisioned fiber that connects two or more entities not on a single contiguous campus. Complex multi-year contracts for service.
+    </div>
+
+    <!-- Question 1 -->
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:10px">Will you need assistance developing an RFP?</div>
+      <div style="display:flex;gap:12px">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 18px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="rfp-assistance" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 18px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="rfp-assistance" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:6px">Do you have an RFP that we will need to review?</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">If so, please email to <a href="mailto:erate@swwc.org" style="color:var(--blue)">erate@swwc.org</a></div>
+      <div style="display:flex;gap:12px">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 18px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="rfp-review" value="yes" style="accent-color:var(--blue);width:15px;height:15px"> Yes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 18px;border:0.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;font-size:14px;color:var(--text)">
+          <input type="radio" name="rfp-review" value="no" style="accent-color:var(--blue);width:15px;height:15px"> No
+        </label>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:6px">Please describe what is needed for the RFP.</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Maps, equipment, data closet, etc. will be needed.</div>
+      <textarea id="rfp-description" placeholder="Enter your answer" style="width:100%;padding:9px 11px;font-size:13px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-md);background:var(--bg);color:var(--text);outline:none;resize:vertical;min-height:100px;font-family:inherit"></textarea>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:.75rem;border-top:0.5px solid var(--border)">
+      <button class="btn btn-primary" onclick="saveRFP()">Save RFP information</button>
+      <span id="rfp-save-msg" style="font-size:13px;color:var(--text-secondary);padding:9px 0"></span>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── Configuration ─────────────────────────────────────────────
+// Paste your deployed Master Apps Script URL here after setup
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbG-oPNYna-mhRHQot9FXEfq6pRL6YBu8FajsEJu9MvdWrMr_GiIxTeXnYwyIzXBsr/exec';
+const FISCAL_YEAR  = 'FY2027';
+const ENTITY_TYPE  = 'district'; // 'district' for this file, 'library' for library version
+
+
+// ── JSONP fetch helper (bypasses CORS on Google Apps Script GET requests) ──
+function jsonpFetch(url) {
+  return new Promise((resolve, reject) => {
+    const cbName = 'jsonp_cb_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    const timeout = setTimeout(() => {
+      delete window[cbName];
+      document.body.removeChild(script);
+      reject(new Error('JSONP timeout'));
+    }, 15000);
+    window[cbName] = (data) => {
+      clearTimeout(timeout);
+      delete window[cbName];
+      document.body.removeChild(script);
+      resolve(data);
+    };
+    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
+    // onerror suppressed — Google redirects the script tag but callback still fires
+    document.body.appendChild(script);
+  });
+}
+
+// ── District state ────────────────────────────────────────────
+let districtName = '';
+let districtSheetId = '';
+let isNew = false;
+
+// ── District connection ───────────────────────────────────────
+async function connectDistrict() {
+  const input = document.getElementById('district-input').value.trim();
+  if (!input) return;
+
+  const btn = document.getElementById('district-btn');
+  const msg = document.getElementById('district-msg');
+  btn.disabled = true;
+  btn.textContent = 'Connecting…';
+  msg.style.color = 'var(--text-secondary)';
+  msg.textContent = 'Looking up district…';
+
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') {
+    // Demo mode — no Apps Script connected yet
+    districtName = input;
+    districtSheetId = 'demo';
+    launchApp(true);
+    return;
+  }
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'createOrGetDistrict', districtName: input, fiscalYear: FISCAL_YEAR, entityType: ENTITY_TYPE })
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error);
+
+    districtName    = json.districtName;
+    districtSheetId = json.sheetId;
+
+    msg.style.color = 'var(--text-success,#27500a)';
+    msg.textContent = json.created
+      ? `✓ New library created for "${districtName}"`
+      : `✓ Connected to existing library for "${districtName}"`;
+
+    setTimeout(() => launchApp(json.created), 800);
+  } catch (err) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Could not connect: ' + err.message;
+    btn.disabled    = false;
+    btn.textContent = 'Connect to library';
+  }
+}
+
+function launchApp(newDistrict) {
+  isNew = newDistrict;
+  document.getElementById('district-screen').style.display = 'none';
+  document.getElementById('main-header').style.display = 'flex';
+  document.getElementById('district-badge-name').textContent = districtName;
+  fetchMasterLibrary();
+
+  if (isNew) {
+    // Brand new district — show contact form
+    document.getElementById('contact-screen').style.display = 'flex';
+    document.getElementById('main-app').style.display = 'none';
+  } else {
+    // Returning district — try to load existing contact info from sheet
+    document.getElementById('contact-screen').style.display = 'flex';
+    document.getElementById('main-app').style.display = 'none';
+    fetchAndPopulateContacts();
+  }
+}
+
+async function fetchAndPopulateContacts() {
+  const msg = document.getElementById('contact-msg');
+  const btn = document.getElementById('contact-submit-btn');
+  msg.style.color = 'var(--text-secondary)';
+  msg.textContent = 'Loading saved contact info…';
+
+  // Also try sessionStorage first for instant load
+  loadContactInfo();
+
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE' || !districtSheetId || districtSheetId === 'demo') {
+    msg.textContent = '';
+    return;
+  }
+
+  try {
+    const json = await jsonpFetch(APPS_SCRIPT_URL + '?action=getContacts&districtName=' + encodeURIComponent(districtName));
+    if (!json.ok || !json.contacts) { msg.textContent = ''; return; }
+
+    const c = json.contacts;
+    const fieldMap = {
+      'epc-name':      c.epc_name,
+      'epc-title':     c.epc_title,
+      'epc-phone':     c.epc_phone,
+      'epc-email':     c.epc_email,
+      'tech-name':     c.tech_name,
+      'tech-title':    c.tech_title,
+      'tech-phone':    c.tech_phone,
+      'tech-email':    c.tech_email,
+      'super-name':    c.superintendent_name,
+      'super-phone':   c.superintendent_phone,
+      'super-email':   c.superintendent_email,
+      'other-contacts':c.other_contacts
+    };
+
+    Object.entries(fieldMap).forEach(([id, val]) => {
+      const el = document.getElementById('ci-' + id);
+      if (el && val) el.value = val;
+    });
+
+    // If all required fields are populated, offer to skip straight to hardware
+    const hasRequired = c.epc_name && c.epc_email;
+    if (hasRequired) {
+      msg.style.color = 'var(--text-success,#27500a)';
+      msg.textContent = '✓ Contact info loaded from your previous session.';
+      btn.textContent = 'Confirm & continue →';
+    } else {
+      msg.textContent = '';
+    }
+  } catch(e) {
+    msg.textContent = '';
+  }
+}
+
+function loadContactInfo() {
+  // Populate from sessionStorage if returning to this screen
+  const saved = sessionStorage.getItem('contactInfo_' + districtName);
+  if (!saved) return;
+  try {
+    const c = JSON.parse(saved);
+    const fields = ['epc-name','epc-title','epc-phone','epc-email',
+                    'tech-name','tech-title','tech-phone','tech-email',
+                    'super-name','super-phone','super-email','other-contacts'];
+    fields.forEach(f => {
+      const el = document.getElementById('ci-' + f);
+      if (el && c[f]) el.value = c[f];
+    });
+  } catch(e) {}
+}
+
+async function submitContactInfo() {
+  const epcName  = document.getElementById('ci-epc-name').value.trim();
+  const epcEmail = document.getElementById('ci-epc-email').value.trim();
+  const msg      = document.getElementById('contact-msg');
+  const btn      = document.getElementById('contact-submit-btn');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!epcName) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'EPC Administrator name is required.';
+    return;
+  }
+  if (!epcEmail || !emailRegex.test(epcEmail)) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Please enter a valid EPC Administrator email address.';
+    return;
+  }
+  const techName  = document.getElementById('ci-tech-name').value.trim();
+  const techPhone = document.getElementById('ci-tech-phone').value.trim();
+  const techEmail = document.getElementById('ci-tech-email').value.trim();
+  if (!techName || !techPhone) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Technology Support Individual name and phone are required.';
+    return;
+  }
+  if (!techEmail || !emailRegex.test(techEmail)) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Please enter a valid Technology Support Individual email address.';
+    return;
+  }
+
+  const contactData = {
+    'epc-name':        epcName,
+    'epc-title':       document.getElementById('ci-epc-title').value.trim(),
+    'epc-phone':       document.getElementById('ci-epc-phone').value.trim(),
+    'epc-email':       epcEmail,
+    'tech-name':       document.getElementById('ci-tech-name').value.trim(),
+    'tech-title':      document.getElementById('ci-tech-title').value.trim(),
+    'tech-phone':      document.getElementById('ci-tech-phone').value.trim(),
+    'tech-email':      document.getElementById('ci-tech-email').value.trim(),
+    'super-name':      document.getElementById('ci-super-name').value.trim(),
+    'super-phone':     document.getElementById('ci-super-phone').value.trim(),
+    'super-email':     document.getElementById('ci-super-email').value.trim(),
+    'other-contacts':  document.getElementById('ci-other-contacts').value.trim()
+  };
+
+  // Save to sessionStorage for pre-fill if they return
+  sessionStorage.setItem('contactInfo_' + districtName, JSON.stringify(contactData));
+
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  msg.style.color = 'var(--text-secondary)';
+  msg.textContent = 'Saving contact information…';
+
+  try {
+    await saveContactInfoToSheet(contactData);
+    msg.style.color = 'var(--text-success,#27500a)';
+    msg.textContent = '✓ Saved';
+    setTimeout(() => {
+      document.getElementById('contact-screen').style.display = 'none';
+      document.getElementById('cat1-prompt-screen').style.display = 'flex';
+      fetchSharedLibrary();
+      if (!isNew) restoreFromCache();
+    }, 600);
+  } catch(e) {
+    // Even if sheet save fails, let them proceed
+    msg.style.color = 'var(--amber,#ba7517)';
+    msg.textContent = 'Could not reach shared library — proceeding in local mode.';
+    setTimeout(() => {
+      document.getElementById('contact-screen').style.display = 'none';
+      document.getElementById('cat1-prompt-screen').style.display = 'flex';
+      fetchSharedLibrary();
+      btn.disabled = false;
+      btn.textContent = 'Save & continue →';
+    }, 1200);
+  }
+}
+
+async function saveContactInfoToSheet(contactData) {
+  if (!districtSheetId || districtSheetId === 'demo') return;
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      action:      'saveContacts',
+      sheetId:     districtSheetId,
+      districtName,
+      ...contactData
+    })
+  });
+}
+
+function goBackToDistrict() {
+  document.getElementById('contact-screen').style.display = 'none';
+  document.getElementById('district-screen').style.display = 'flex';
+}
+
+function changeDistrict() {
+  districtName    = '';
+  districtSheetId = '';
+  clearCache();
+  // Reset custom products
+  ALL_TYPES.filter(t => DATA[t]).forEach(type => {
+    customProducts[type] = [];
+    DATA[type].products = DATA[type].products.filter(p => !p.shared);
+    renderCustomList(type);
+    setLibraryStatus(type, 'clear');
+  });
+  document.getElementById('district-screen').style.display = 'flex';
+  document.getElementById('contact-screen').style.display = 'none';
+  document.getElementById('cat1-prompt-screen').style.display = 'none';
+  document.getElementById('main-header').style.display = 'none';
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('district-input').value = '';
+  const msg = document.getElementById('district-msg');
+  msg.textContent = '';
+  const btn = document.getElementById('district-btn');
+  btn.disabled = false;
+  btn.textContent = 'Connect to library';
+}
+
+// ── Fetch district products from Sheet ───────────────────────
+async function fetchSharedLibrary() {
+  if (!districtSheetId || districtSheetId === 'demo') return;
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  try {
+    ALL_TYPES.forEach(type => setLibraryStatus(type, 'loading'));
+
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'getProducts', sheetId: districtSheetId })
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error);
+
+    // Clear previously loaded shared products (skip 'history' which has no DATA entry)
+    ALL_TYPES.filter(t => DATA[t]).forEach(type => {
+      DATA[type].products = DATA[type].products.filter(p => !p.shared);
+      customProducts[type] = [];
+    });
+
+    json.products.forEach(p => {
+      if (!DATA[p.type]) return;
+      const prod = {
+        name:     p.name,
+        brand:    p.brand || 'Custom',
+        desc:     p.desc || '',
+        tags:     Array.isArray(p.tags) ? p.tags : [],
+        specs:    {},
+        shared:   true,
+        added_by: p.added_by || ''
+      };
+      DATA[p.type].products.push(prod);
+      customProducts[p.type].push(prod);
+    });
+
+    const count = json.products.length;
+    ALL_TYPES.forEach(type => { setLibraryStatus(type, 'ok', count); renderCustomList(type); });
+  } catch (err) {
+    ALL_TYPES.forEach(type => setLibraryStatus(type, 'error'));
+    console.warn('Could not load district library:', err);
+  }
+}
+
+// ── Submit product suggestion to pending queue ────────────────
+async function submitPendingProduct(prod) {
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  const params = new URLSearchParams({
+    action:       'submitPending',
+    districtName: districtName   || '',
+    type:         prod.type      || '',
+    name:         prod.name      || '',
+    brand:        prod.brand     || '',
+    desc:         prod.desc      || '',
+    tags:         (prod.tags || []).join('||'),
+    added_by:     prod.added_by  || ''
+  });
+  const json = await jsonpFetch(APPS_SCRIPT_URL + '?' + params.toString());
+  if (!json.ok) throw new Error(json.error || 'Submission failed');
+}
+
+// ── Fetch approved master library products ───────────────────
+async function fetchMasterLibrary() {
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  try {
+    const json = await jsonpFetch(APPS_SCRIPT_URL + '?action=getMasterLibrary');
+    if (!json.ok) return;
+    json.products.forEach(p => {
+      if (!DATA[p.type]) return;
+      const exists = DATA[p.type].products.find(x => x.name.toLowerCase() === p.name.toLowerCase());
+      if (!exists) {
+        DATA[p.type].products.push({
+          name:     p.name,
+          brand:    p.brand || '',
+          desc:     p.desc  || '',
+          tags:     Array.isArray(p.tags) ? p.tags : [],
+          specs:    {},
+          approved: true
+        });
+      }
+    });
+  } catch(e) { /* silent — base library still works */ }
+}
+
+// ── Delete product from district sheet ───────────────────────
+async function deleteProductFromSheet(type, name) {
+  if (!districtSheetId || districtSheetId === 'demo') return;
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'deleteProduct', sheetId: districtSheetId, type, name })
+  });
+}
+
+// ── Library status indicator ──────────────────────────────────
+function setLibraryStatus(type, state, count) {
+  const el = document.getElementById(type + '-library-status');
+  if (!el) return;
+  if (state === 'loading') {
+    el.innerHTML = '<span style="color:var(--text-tertiary)">⟳ Loading district library…</span>';
+  } else if (state === 'ok') {
+    el.innerHTML = `<span style="color:var(--text-success,#27500a)">✓ Library loaded${count ? ' — ' + count + ' custom product(s)' : ''}</span>`;
+  } else if (state === 'error') {
+    el.innerHTML = '<span style="color:var(--red-dark,#a32d2d)">⚠ Could not reach library — check Apps Script URL</span>';
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+const DATA = {
+  ap: {
+    groups: [
+      {label:"Wi-Fi standard", opts:["Wi-Fi 7 (802.11be)","Wi-Fi 6E (802.11ax + 6 GHz band)","Wi-Fi 6 (802.11ax, 2.4/5 GHz)"]},
+      {label:"Radio bands", opts:["Tri-band (2.4 / 5 / 6 GHz)","Dual-band (2.4 / 5 GHz only)"]},
+      {label:"MIMO configuration", opts:["4×4:4 or higher","2×2:2 minimum"]},
+      {label:"Power input", opts:["PoE+ 802.3at (30W)","PoE++ 802.3bt (90W)"]},
+      {label:"Uplink speed", opts:["Multigigabit uplink (2.5–5 Gbps)","Gigabit uplink (1 Gbps)"]},
+      {label:"Management platform", opts:["ExtremeCloud IQ","Aruba Central / on-prem controller","Cisco Meraki cloud","UniFi on-prem controller","SWWC Hosted UniFi controller","Cisco 9800 controller compatible","Cloud or controller — no preference"]},
+      {label:"Licensing term", opts:["5-year licensing included","3-year licensing included","1-year licensing included"]},
+      {label:"Security & protocols", opts:["WPA3-Enterprise","OFDMA / MU-MIMO","Zero Trust / ZTNA","BLE / IoT radio (ZigBee)"]},
+      {label:"Deployment environment", opts:["Indoor — classrooms / campus","Outdoor weatherproof","High-density venues (120+ concurrent clients)","Standard density (60+ concurrent clients)"]},
+      {label:"Standards compatibility", opts:["Backward compatible with Wi-Fi 5 and earlier","WPA3 required (not optional)"]}
+    ],
+    products: [
+      {name:"Extreme AP5020",brand:"Extreme Networks",tags:["Wi-Fi 7 (802.11be)","Tri-band (2.4 / 5 / 6 GHz)","4×4:4 or higher","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","ExtremeCloud IQ","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 7 tri-band AP with 4×4:4 MIMO, ExtremeCloud IQ managed, 5-year licensing. Direct replacement for AP510C in Extreme-ecosystem schools.",specs:{"Wi-Fi":["802.11be (Wi-Fi 7)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["4×4:4"],"PoE":["802.3at"],"Uplink":["2.5 Gbps"],"Mgmt":["ExtremeCloud IQ"],"License":["5 yr"]}},
+      {name:"Extreme AP 510C",brand:"Extreme Networks",tags:["Wi-Fi 6 (802.11ax, 2.4/5 GHz)","Dual-band (2.4 / 5 GHz only)","4×4:4 or higher","PoE+ 802.3at (30W)","Gigabit uplink (1 Gbps)","ExtremeCloud IQ","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 6 dual-band 4×4:4 AP, ExtremeCloud IQ managed with LRM support. Well-established in existing Extreme K-12 deployments; 5-year licensing.",specs:{"Wi-Fi":["802.11ax (Wi-Fi 6)"],"Radios":["2.4 / 5 GHz"],"MIMO":["4×4:4"],"PoE":["802.3at"],"Uplink":["1 Gbps"],"Mgmt":["ExtremeCloud IQ"],"License":["5 yr"]}},
+      {name:"Extreme AP 410C/CX",brand:"Extreme Networks",tags:["Wi-Fi 6 (802.11ax, 2.4/5 GHz)","Dual-band (2.4 / 5 GHz only)","4×4:4 or higher","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","ExtremeCloud IQ","5-year licensing included","WPA3-Enterprise","OFDMA / MU-MIMO","BLE / IoT radio (ZigBee)","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 6 dual-radio 4×4 MIMO with BLE IoT radio, WPA3-Enterprise, multigigabit uplink, ExtremeCloud IQ managed with 5-year license.",specs:{"Wi-Fi":["802.11ax (Wi-Fi 6)"],"Radios":["2.4 / 5 GHz"],"MIMO":["4×4:4"],"PoE":["802.3at"],"Uplink":["2.5 Gbps"],"Mgmt":["ExtremeCloud IQ"],"License":["5 yr"]}},
+      {name:"Aruba AP-735",brand:"HPE Aruba",tags:["Wi-Fi 7 (802.11be)","Tri-band (2.4 / 5 / 6 GHz)","2×2:2 minimum","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","Aruba Central / on-prem controller","5-year licensing included","WPA3-Enterprise","OFDMA / MU-MIMO","Zero Trust / ZTNA","BLE / IoT radio (ZigBee)","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 7 tri-radio with dual 5 Gbps uplinks, BLE 5.4 + ZigBee IoT radios, WPA3 Enterprise + Zero Trust ZTNA, Aruba Central 5-year licensing.",specs:{"Wi-Fi":["802.11be (Wi-Fi 7)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["2×2:2"],"PoE":["802.3at"],"Uplink":["5 Gbps ×2"],"Mgmt":["Aruba Central"],"License":["5 yr"]}},
+      {name:"HPE Aruba AP-655",brand:"HPE Aruba",tags:["Wi-Fi 6E (802.11ax + 6 GHz band)","Tri-band (2.4 / 5 / 6 GHz)","4×4:4 or higher","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","Aruba Central / on-prem controller","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Tri-radio 4×4 MIMO Wi-Fi 6E with 7 Gbps+ aggregate throughput, dual 5 GbE uplinks, intelligent client steering, 5-year Aruba management license.",specs:{"Wi-Fi":["802.11ax (Wi-Fi 6E)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["4×4"],"PoE":["802.3at"],"Uplink":["5 GbE ×2"],"Mgmt":["Aruba Central"],"License":["5 yr"]}},
+      {name:"Aruba AP-515 / AP-615",brand:"HPE Aruba",tags:["Wi-Fi 6E (802.11ax + 6 GHz band)","Tri-band (2.4 / 5 / 6 GHz)","2×2:2 minimum","PoE+ 802.3at (30W)","Gigabit uplink (1 Gbps)","Aruba Central / on-prem controller","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 6E tri-band AP, minimum 2×2:2 MIMO, PoE+, compatible with Aruba wireless controllers and Aruba Central cloud. Controller included if incompatible.",specs:{"Wi-Fi":["802.11ax (Wi-Fi 6E)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["2×2:2"],"PoE":["802.3at"],"Uplink":["1 Gbps"],"Mgmt":["Aruba Central"],"License":["5 yr"]}},
+      {name:"Cisco 9100 Series",brand:"Cisco",tags:["Wi-Fi 6E (802.11ax + 6 GHz band)","Wi-Fi 6 (802.11ax, 2.4/5 GHz)","Tri-band (2.4 / 5 / 6 GHz)","PoE+ 802.3at (30W)","Cisco 9800 controller compatible","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 6E/802.11be — requires Cisco 9800 controller or compatible replacement. Configuration, integration, and provisioning included in scope. 5-year license.",specs:{"Wi-Fi":["802.11ax / 802.11be"],"Radios":["2.4 / 5 / 6 GHz"],"PoE":["802.3at"],"Mgmt":["Cisco 9800"],"License":["5 yr"]}},
+      {name:"Cisco Meraki MR44",brand:"Cisco Meraki",tags:["Wi-Fi 6 (802.11ax, 2.4/5 GHz)","Dual-band (2.4 / 5 GHz only)","4×4:4 or higher","PoE+ 802.3at (30W)","Gigabit uplink (1 Gbps)","Cisco Meraki cloud","5-year licensing included","OFDMA / MU-MIMO","Indoor — classrooms / campus","Standard density (60+ concurrent clients)","Backward compatible with Wi-Fi 5 and earlier"],desc:"802.11ax dual-radio 4×4:4 on 5 GHz, ~3 Gbps aggregate, Meraki cloud-managed with 5-year Enterprise license.",specs:{"Wi-Fi":["802.11ax (Wi-Fi 6)"],"Radios":["2.4 / 5 GHz"],"MIMO":["4×4:4 (5G) / 2×2:2 (2.4G)"],"PoE":["802.3at"],"Uplink":["1 Gbps"],"Mgmt":["Meraki cloud"],"License":["5 yr"]}},
+      {name:"Ubiquiti U7-Pro",brand:"Ubiquiti",tags:["Wi-Fi 7 (802.11be)","Tri-band (2.4 / 5 / 6 GHz)","4×4:4 or higher","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","UniFi on-prem controller","SWWC Hosted UniFi controller","5-year licensing included","Indoor — classrooms / campus","High-density venues (120+ concurrent clients)","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 7 tri-band 4×4:4, UniFi on-premise or SWWC Hosted UniFi controller with 5-year licensing. Competitive price point; solid for UniFi-ecosystem districts.",specs:{"Wi-Fi":["802.11be (Wi-Fi 7)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["4×4:4"],"PoE":["802.3at"],"Uplink":["2.5 Gbps"],"Mgmt":["UniFi / SWWC Hosted"],"License":["5 yr"]}},
+      {name:"Ruckus R670",brand:"CommScope Ruckus",tags:["Wi-Fi 7 (802.11be)","Tri-band (2.4 / 5 / 6 GHz)","2×2:2 minimum","PoE+ 802.3at (30W)","Gigabit uplink (1 Gbps)","5-year licensing included","Indoor — classrooms / campus","High-density venues (120+ concurrent clients)","Backward compatible with Wi-Fi 5 and earlier"],desc:"Wi-Fi 7 tri-band AP with preferred on-premise Ruckus controller; cloud controller also eligible. Controller + 5-year licensing for APs and controller included.",specs:{"Wi-Fi":["802.11be (Wi-Fi 7)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["2×2:2"],"PoE":["802.3at"],"Mgmt":["Ruckus on-prem"],"License":["5 yr"]}},
+      {name:"Ubiquiti U7 Outdoor",brand:"Ubiquiti",tags:["Wi-Fi 7 (802.11be)","Tri-band (2.4 / 5 / 6 GHz)","4×4:4 or higher","PoE+ 802.3at (30W)","Multigigabit uplink (2.5–5 Gbps)","UniFi on-prem controller","SWWC Hosted UniFi controller","5-year licensing included","Outdoor weatherproof"],desc:"Outdoor-rated Wi-Fi 7 tri-band 4×4:4 AP with IP67 weatherproofing. UniFi on-prem or SWWC Hosted controller; 5-year licensing included.",specs:{"Wi-Fi":["802.11be (Wi-Fi 7)"],"Radios":["2.4 / 5 / 6 GHz"],"MIMO":["4×4:4"],"PoE":["802.3at"],"Mgmt":["UniFi / SWWC Hosted"],"Rated":["Outdoor IP67"]}}
+    ]
+  },
+  sw: {
+    groups: [
+      {label:"Port count", opts:["48-port","24-port","12-port or fewer"]},
+      {label:"PoE capability", opts:["PoE++ 802.3bt Type 4 (90W per port)","PoE+ 802.3at Type 2 (30W per port)","PoE 802.3af (15W per port)"]},
+      {label:"Multi-rate access ports", opts:["2.5 Gbps multi-rate ports","10 Gbps access ports","Standard 1 Gbps access ports only"]},
+      {label:"Uplink interfaces", opts:["10G SFP+ uplinks","25G SFP28 uplinks","1G SFP uplinks only"]},
+      {label:"Layer / routing", opts:["Layer 3 (IP routing)","Layer 2 only"]},
+      {label:"Advanced features", opts:["Stackable","LRM capable","Front-to-back airflow","Back-to-front airflow","Redundant / hot-swap PSU","VLAN / QoS / ACL support"]},
+      {label:"Management platform", opts:["ExtremeCloud IQ","Cisco Meraki cloud","Aruba Central","SWWC Hosted UniFi controller","Standalone — no cloud required"]},
+      {label:"Licensing term", opts:["5-year licensing included","3-year licensing included"]},
+      {label:"Accessories included", opts:["Stack cable included","DAC cable included","10G SFP+ fiber modules included","Power supply included"]}
+    ],
+    products: [
+      {name:"Extreme 5420M-16MW-32P-4YE",brand:"Extreme Networks",tags:["48-port","PoE++ 802.3bt Type 4 (90W per port)","PoE+ 802.3at Type 2 (30W per port)","2.5 Gbps multi-rate ports","25G SFP28 uplinks","Layer 3 (IP routing)","Stackable","LRM capable","Front-to-back airflow","ExtremeCloud IQ","5-year licensing included","Stack cable included","DAC cable included","Power supply included","VLAN / QoS / ACL support"],desc:"Multi-rate PoE switch: 16×2.5G PoE++ (90W) + 32×1G PoE+ (30W), 4×25G SFP28 uplinks, stackable with LRM, ExtremeCloud IQ 5-year license. Full PoE PSU and DAC cable included.",specs:{"Access ports":["16×2.5G PoE++","32×1G PoE+"],"Uplinks":["4×25G SFP28"],"Stack":["Yes"],"LRM":["Yes"],"Mgmt":["ExtremeCloud IQ"],"License":["5 yr"]}},
+      {name:"Extreme 5420F-48P-4XE/XL",brand:"Extreme Networks",tags:["48-port","PoE+ 802.3at Type 2 (30W per port)","Standard 1 Gbps access ports only","10G SFP+ uplinks","Layer 3 (IP routing)","Stackable","LRM capable","Front-to-back airflow","ExtremeCloud IQ","5-year licensing included","Stack cable included","DAC cable included","Power supply included","VLAN / QoS / ACL support"],desc:"48-port 1G PoE+ (30W) stackable switch with 4×10G SFP+ uplinks, LRM-capable, ExtremeCloud IQ 5-year license, front-to-back airflow, stack and DAC cable included.",specs:{"Access ports":["48×1G PoE+"],"Uplinks":["4×10G SFP+"],"Stack":["Yes"],"LRM":["Yes"],"Mgmt":["ExtremeCloud IQ"],"License":["5 yr"]}},
+      {name:"Cisco Catalyst 9300",brand:"Cisco",tags:["48-port","PoE++ 802.3bt Type 4 (90W per port)","2.5 Gbps multi-rate ports","10G SFP+ uplinks","Layer 3 (IP routing)","Layer 2 only","Stackable","Front-to-back airflow","5-year licensing included","Stack cable included","Power supply included","10G SFP+ fiber modules included","VLAN / QoS / ACL support"],desc:"Cisco Catalyst 9300-series multi-rate switch with PoE++ Type 4, 10G SFP+ uplinks, DNA licensing 5-year, full Cisco wireless infrastructure integration.",specs:{"Access ports":["12×2.5G PoE++ + others"],"Uplinks":["2×10G SFP+"],"Stack":["Yes"],"Mgmt":["Cisco DNA / IOS-XE"],"License":["5 yr"]}},
+      {name:"Cisco Meraki MS225-48LP",brand:"Cisco Meraki",tags:["48-port","PoE+ 802.3at Type 2 (30W per port)","Standard 1 Gbps access ports only","10G SFP+ uplinks","Layer 2 only","Cisco Meraki cloud","5-year licensing included","10G SFP+ fiber modules included","VLAN / QoS / ACL support"],desc:"Cloud-managed 48-port PoE+ switch via Cisco Meraki dashboard, 4×10G SFP+ uplinks (2 SM + 6 MM SFP modules), 5-year Meraki Enterprise license.",specs:{"Access ports":["48×1G PoE+"],"Uplinks":["4×10G SFP+"],"SFP modules":["2 SM + 6 MM"],"Mgmt":["Meraki cloud"],"License":["5 yr"]}},
+      {name:"HPE Aruba CX 6300M 48-port",brand:"HPE Aruba",tags:["48-port","Standard 1 Gbps access ports only","10G SFP+ uplinks","Layer 3 (IP routing)","Redundant / hot-swap PSU","Aruba Central","VLAN / QoS / ACL support","Front-to-back airflow"],desc:"Layer-3 managed 48-port copper switch with 4×SFP+ uplinks, modular redundant PSU, rack-mount 1U form factor; manageable via Aruba Central.",specs:{"Access ports":["48×1G RJ45"],"Uplinks":["4×SFP+ / SFP"],"Mgmt":["Aruba Central"],"PSU":["Modular redundant"]}},
+      {name:"HPE Aruba CX 6200M 48-port PoE",brand:"HPE Aruba",tags:["48-port","PoE+ 802.3at Type 2 (30W per port)","2.5 Gbps multi-rate ports","10G SFP+ uplinks","Layer 3 (IP routing)","Redundant / hot-swap PSU","Aruba Central","VLAN / QoS / ACL support"],desc:"Layer-3 managed 48-port multi-gigabit PoE access switch with SFP+ uplinks, modular redundant power; Aruba Central manageable.",specs:{"Access ports":["48×mGig PoE+"],"Uplinks":["SFP+"],"Mgmt":["Aruba Central"],"PSU":["Modular redundant"]}},
+      {name:"HPE Aruba CX 6300M 24-port SFP+",brand:"HPE Aruba",tags:["24-port","10G SFP+ uplinks","25G SFP28 uplinks","Layer 3 (IP routing)","Redundant / hot-swap PSU","Aruba Central","Front-to-back airflow","VLAN / QoS / ACL support"],desc:"Layer-3 managed 24×10G SFP+ switch with 4×SFP56 uplinks; rack-mount, modular PSU; fiber aggregation / distribution for campus networks.",specs:{"Access ports":["24×10G SFP+"],"Uplinks":["4×50G SFP56"],"Mgmt":["Aruba Central"],"PSU":["Modular redundant"]}},
+      {name:"Ubiquiti USW-Pro-Max-48-PoE",brand:"Ubiquiti",tags:["48-port","PoE++ 802.3bt Type 4 (90W per port)","PoE+ 802.3at Type 2 (30W per port)","2.5 Gbps multi-rate ports","10G SFP+ uplinks","Stackable","Front-to-back airflow","Back-to-front airflow","SWWC Hosted UniFi controller","5-year licensing included","Stack cable included","DAC cable included","Power supply included","VLAN / QoS / ACL support"],desc:"16×2.5G PoE++ + 32×1G PoE+, 4×10G SFP uplinks, 720W total PoE budget. Managed via SWWC Hosted UniFi controller or on-prem. DAC and stack cables included.",specs:{"Access ports":["16×2.5G PoE++","32×1G PoE+"],"Uplinks":["4×10G SFP"],"Stack":["Direct-attach / DAC"],"Mgmt":["SWWC Hosted UniFi"],"License":["5 yr"]}},
+      {name:"HPE Networking Instant On 1930 48-port PoE",brand:"HPE",tags:["48-port","PoE+ 802.3at Type 2 (30W per port)","Standard 1 Gbps access ports only","10G SFP+ uplinks","Layer 2 only","Standalone — no cloud required","5-year licensing included","VLAN / QoS / ACL support"],desc:"Smart-managed Layer 2+ 48-port PoE+ switch with 2×10G SFP+ uplinks. Suitable for smaller deployments or budget-conscious refresh projects. 5-year license.",specs:{"Access ports":["48×1G PoE+"],"Uplinks":["2×10G SFP+"],"Mgmt":["Instant On / standalone"],"License":["5 yr"]}}
+    ]
+  },
+  fw: {
+    groups: [
+      {label:"Appliance type", opts:["Next-Generation Firewall (NGFW)","UTM appliance"]},
+      {label:"WAN interfaces", opts:["Dual 10G SFP+ WAN interfaces","Standard 1G WAN only"]},
+      {label:"Security services", opts:["IPS (Intrusion Prevention)","Anti-virus / Anti-malware inspection","Web / DNS filtering","Application control","Advanced threat intelligence","SSL VPN remote access","Site-to-site IPsec VPN","High availability (HA) support"]},
+      {label:"Sizing", opts:["Up to 600 students / 100 staff","Up to 2000 users","Enterprise / large district"]},
+      {label:"Management platform", opts:["FortiManager / FortiAnalyzer","Cisco Meraki cloud","Standalone / on-device"]},
+      {label:"Licensing term", opts:["5-year subscription bundle","3-year subscription bundle"]},
+      {label:"Additional capabilities", opts:["VLAN segmentation","Traffic shaping / QoS","Content filtering","Wireless controller integrated"]}
+    ],
+    products: [
+      {name:"Fortinet FortiGate 1100E/1101E",brand:"Fortinet",tags:["Next-Generation Firewall (NGFW)","Dual 10G SFP+ WAN interfaces","IPS (Intrusion Prevention)","Anti-virus / Anti-malware inspection","Web / DNS filtering","Application control","Advanced threat intelligence","SSL VPN remote access","Site-to-site IPsec VPN","High availability (HA) support","FortiManager / FortiAnalyzer","5-year subscription bundle","Up to 2000 users","Enterprise / large district","VLAN segmentation","Traffic shaping / QoS"],desc:"Enterprise NGFW with stateful firewalling, HA, IPsec/SSL VPN, full UTM subscription bundle (IPS, AV, web filtering, app control, threat intelligence) for 5 years. Managed via FortiManager/FortiAnalyzer.",specs:{"Type":["NGFW"],"WAN":["2×10G SFP+"],"VPN":["IPsec + SSL"],"HA":["Yes"],"Mgmt":["FortiManager"],"License":["5 yr UTM"]}},
+      {name:"Cisco Meraki MX250",brand:"Cisco Meraki",tags:["Next-Generation Firewall (NGFW)","Dual 10G SFP+ WAN interfaces","IPS (Intrusion Prevention)","Anti-virus / Anti-malware inspection","Web / DNS filtering","Application control","SSL VPN remote access","Site-to-site IPsec VPN","Cisco Meraki cloud","5-year subscription bundle","Up to 2000 users","VLAN segmentation","Traffic shaping / QoS","Content filtering"],desc:"Cloud-managed SD-WAN/NGFW appliance: stateful firewall, VPN, IDS/IPS, content filtering, AV, traffic shaping, VLAN routing; 5-year Meraki Advanced Security license.",specs:{"Type":["NGFW / SD-WAN"],"WAN":["2×10G SFP+"],"VPN":["IPsec + SSL"],"Mgmt":["Meraki cloud"],"License":["5 yr Adv Security"]}},
+      {name:"WatchGuard Firebox (UTM)",brand:"WatchGuard",tags:["UTM appliance","Dual 10G SFP+ WAN interfaces","IPS (Intrusion Prevention)","Anti-virus / Anti-malware inspection","Web / DNS filtering","Application control","SSL VPN remote access","Site-to-site IPsec VPN","5-year subscription bundle","Up to 600 students / 100 staff","VLAN segmentation","Traffic shaping / QoS","Content filtering"],desc:"UTM appliance with 2×10G SFP+ and 4×GbE interfaces, full UTM services, 5-year licensing; appropriately sized for 600-student / 100-staff schools.",specs:{"Type":["UTM"],"WAN":["2×10G SFP+","4×1G RJ45"],"VPN":["IPsec + SSL"],"License":["5 yr UTM"]}}
+    ]
+  },
+  ups: {
+    groups: [
+      {label:"Capacity", opts:["750 VA","1500 VA","2000–2200 VA","3000 VA","5–6 kVA (enterprise)"]},
+      {label:"Topology", opts:["Line Interactive","Online double-conversion"]},
+      {label:"Form factor", opts:["2U rack-mount","Tower / rack convertible"]},
+      {label:"Battery type", opts:["Standard sealed lead-acid","Lithium (hot-swappable)"]},
+      {label:"Outlets", opts:["6+ NEMA 5-15R outlets","NEMA 5-20R inlet compatible","6+ receptacles total"]},
+      {label:"Network monitoring", opts:["SmartConnect cloud monitoring","SNMP / network management card","No network monitoring needed"]},
+      {label:"Features", opts:["AVR (automatic voltage regulation)","LCD status display","Hot-swappable batteries","Pure sine wave output","External battery module (EBM) support","Shallow depth (< 22 inches)"]},
+      {label:"Accessories / add-ons", opts:["External battery module (EBM)","Power distribution module (PPDM)","Rack rails / mounting hardware"]}
+    ],
+    products: [
+      {name:"APC Smart-UPS SMT2200RM2UC",brand:"APC / Schneider Electric",tags:["2000–2200 VA","Line Interactive","2U rack-mount","Standard sealed lead-acid","6+ NEMA 5-15R outlets","NEMA 5-20R inlet compatible","SmartConnect cloud monitoring","AVR (automatic voltage regulation)","LCD status display","Hot-swappable batteries","Pure sine wave output","Shallow depth (< 22 inches)"],desc:"2200 VA line-interactive rackmount UPS. SmartConnect cloud monitoring, AVR, LCD, 6×NEMA 5-15R + 2×NEMA 5-20R outlets, hot-swap batteries, shallow-depth compatible.",specs:{"VA":["2200"],"Type":["Line Interactive"],"Form":["2U rack"],"Outlets":["6×5-15R + 2×5-20R"],"Monitoring":["SmartConnect"]}},
+      {name:"APC Smart-UPS C 1500VA Rack",brand:"APC / Schneider Electric",tags:["1500 VA","Line Interactive","2U rack-mount","Standard sealed lead-acid","6+ NEMA 5-15R outlets","SmartConnect cloud monitoring","AVR (automatic voltage regulation)","LCD status display","Hot-swappable batteries","Pure sine wave output"],desc:"1500 VA line-interactive rack-mount UPS with SmartConnect, pure sine wave, AVR, LCD, hot-swap batteries. Ideal for network closets.",specs:{"VA":["1500"],"Type":["Line Interactive"],"Form":["2U rack"],"Monitoring":["SmartConnect"]}},
+      {name:"APC Smart-UPS SMT750RM2UC",brand:"APC / Schneider Electric",tags:["750 VA","Line Interactive","2U rack-mount","Standard sealed lead-acid","6+ NEMA 5-15R outlets","SmartConnect cloud monitoring","AVR (automatic voltage regulation)","LCD status display"],desc:"750 VA line-interactive rackmount UPS with SmartConnect cloud monitoring, AVR, LCD. Suitable for smaller closets.",specs:{"VA":["750"],"Type":["Line Interactive"],"Form":["2U rack"],"Monitoring":["SmartConnect"]}},
+      {name:"Eaton 5PX3000RTN",brand:"Eaton",tags:["3000 VA","Line Interactive","2U rack-mount","Tower / rack convertible","SNMP / network management card","AVR (automatic voltage regulation)","Hot-swappable batteries","External battery module (EBM) support","Pure sine wave output"],desc:"3000 VA rack/tower convertible UPS with integrated network management card (SNMP), AVR, hot-swap batteries, EBM expansion.",specs:{"VA":["3000"],"Type":["Line Interactive"],"Form":["Rack/Tower"],"Monitoring":["SNMP NMC"],"EBM":["Compatible"]}},
+      {name:"Eaton 9PX 5–6 kVA",brand:"Eaton",tags:["5–6 kVA (enterprise)","Online double-conversion","2U rack-mount","SNMP / network management card","External battery module (EBM) support","Pure sine wave output","Power distribution module (PPDM)","Rack rails / mounting hardware"],desc:"Online double-conversion 5–6 kVA UPS for critical network core; 180V EBM expansion, PPDM power distribution, network management card, rack-mount.",specs:{"VA":["5–6 kVA"],"Type":["Online double-conversion"],"Form":["Rack-mount"],"Monitoring":["SNMP NMC"],"EBM":["180V compatible"]}},
+      {name:"Vertiv PSI5-1500RT120LI",brand:"Vertiv",tags:["1500 VA","2U rack-mount","Lithium (hot-swappable)","6+ receptacles total","NEMA 5-20R inlet compatible","SNMP / network management card","Pure sine wave output"],desc:"1500 VA lithium-ion rack-mount UPS with hot-swap batteries, NEMA 5-20R input, network monitoring module, pure sine wave output.",specs:{"VA":["1500"],"Type":["Rack-mount"],"Battery":["Lithium"],"Monitoring":["Network module included"]}},
+      {name:"Eaton 5PXEBM / 9PX EBM",brand:"Eaton",tags:["External battery module (EBM)","Rack rails / mounting hardware"],desc:"External battery modules compatible with Eaton 5PX and 9PX UPS series to extend runtime. Includes interconnect cabling and mounting hardware. Multiple models available.",specs:{"Compatible":["Eaton 5PX","Eaton 9PX"],"Type":["EBM"]}}
+    ]
+  },
+  lic: {
+    groups: [
+      {label:"Platform", opts:["ExtremeCloud IQ (XIQ)","Aruba Central","Cisco Meraki","Cisco DNA / DNAC","Ruckus SmartZone"]},
+      {label:"License term", opts:["1-year","2-year","3-year","5-year"]},
+      {label:"Tier / level", opts:["XIQ Pilot (XIQ-PIL-S-C)","Standard / base tier","Advanced / premium tier"]},
+      {label:"Applies to", opts:["Wireless access points","Switches","Both APs and switches","Wireless LAN controller"]},
+      {label:"Controller type", opts:["Cloud-based management","On-premise controller included","LRM capable"]},
+      {label:"Support included", opts:["24/7 TAC support","8×5 NBD hardware replacement","Firmware and security updates"]}
+    ],
+    products: [
+      {name:"ExtremeCloud IQ Pilot 5yr (XIQ-PIL-S-C)",brand:"Extreme Networks",tags:["ExtremeCloud IQ (XIQ)","5-year","XIQ Pilot (XIQ-PIL-S-C)","Both APs and switches","Cloud-based management","LRM capable","Firmware and security updates"],desc:"5-year ExtremeCloud IQ Pilot cloud license supporting Extreme APs and switches. LRM capable. Required with AP5020, AP510C, and 5420F/M switch proposals.",specs:{"Platform":["ExtremeCloud IQ"],"Term":["5 yr"],"Tier":["Pilot"],"Covers":["APs + switches"]}},
+      {name:"ExtremeCloud IQ Pilot 3yr (XIQ-PIL-S-C)",brand:"Extreme Networks",tags:["ExtremeCloud IQ (XIQ)","3-year","XIQ Pilot (XIQ-PIL-S-C)","Both APs and switches","Cloud-based management","LRM capable"],desc:"3-year XIQ Pilot license for existing Extreme hardware. Proposals must support Extreme wireless and switching equipment.",specs:{"Platform":["ExtremeCloud IQ"],"Term":["3 yr"],"Tier":["Pilot"]}},
+      {name:"ExtremeCloud IQ Pilot 1yr (XIQ-PIL-S-C)",brand:"Extreme Networks",tags:["ExtremeCloud IQ (XIQ)","1-year","XIQ Pilot (XIQ-PIL-S-C)","Wireless access points","Cloud-based management"],desc:"1-year XIQ Pilot license for existing Extreme AP hardware only.",specs:{"Platform":["ExtremeCloud IQ"],"Term":["1 yr"],"Tier":["Pilot"]}},
+      {name:"ExtremeCloud IQ Pilot 2yr (XIQ-PIL-S-C)",brand:"Extreme Networks",tags:["ExtremeCloud IQ (XIQ)","2-year","XIQ Pilot (XIQ-PIL-S-C)","Both APs and switches","Cloud-based management"],desc:"2-year XIQ Pilot license for existing Extreme hardware. Equivalent proposals must support Extreme wireless and switching equipment.",specs:{"Platform":["ExtremeCloud IQ"],"Term":["2 yr"],"Tier":["Pilot"]}},
+      {name:"Aruba Central 5yr",brand:"HPE Aruba",tags:["Aruba Central","5-year","Both APs and switches","Cloud-based management","Firmware and security updates"],desc:"5-year Aruba Central cloud management license for Aruba APs and switches. Required with AP-735, AP-655, AP-615, and CX switch proposals.",specs:{"Platform":["Aruba Central"],"Term":["5 yr"],"Covers":["APs + switches"]}},
+      {name:"Cisco Meraki 5yr License",brand:"Cisco Meraki",tags:["Cisco Meraki","5-year","Both APs and switches","Cloud-based management","Firmware and security updates"],desc:"5-year Meraki Enterprise or Advanced Security license. Required for Meraki MX firewall, MS switch, and MR AP equipment operation.",specs:{"Platform":["Cisco Meraki"],"Term":["5 yr"],"Covers":["MX + MS + MR"]}},
+      {name:"Cisco 9800 WLAN Controller + Licenses",brand:"Cisco",tags:["Cisco DNA / DNAC","On-premise controller included","5-year","Wireless LAN controller","24/7 TAC support","8×5 NBD hardware replacement","Firmware and security updates"],desc:"On-premise Cisco 9800 WLAN controller with 5-year licensing. Supports up to 123+ Cisco 2802/3802 APs. Required when replacing EOL Cisco 5520 controller.",specs:{"Platform":["Cisco 9800"],"Type":["On-premise controller"],"Term":["5 yr"],"AP support":["123+ APs"]}}
+    ]
+  },
+  acc: {
+    groups: [
+      {label:"Product category", opts:["Enclosed wall-mount cabinet / rack","2U rack cable management panel","DAC cable (direct attach copper)","SFP / SFP+ optical transceiver","SFP56 / 50G module","QSFP to SFP adapter","Switch power supply module"]},
+      {label:"Cabinet / rack specs", opts:["8–16U height","Lockable / secure enclosure","19-inch rack compatible","Wall-mount","Sufficient depth for switches and UPS"]},
+      {label:"Cable specs", opts:["10G SFP+ DAC (1m)","50G SFP56 DAC (0.65m)","OM3 compatible fiber transceiver"]},
+      {label:"Power supply wattage", opts:["250W","1050W","1600W","1800W"]},
+      {label:"Compatibility", opts:["Aruba CX 5420 compatible","Aruba CX 6200/6300/6400 compatible","Extreme 5720-48MW compatible","Universal / no preference"]}
+    ],
+    products: [
+      {name:"Enclosed Lockable Wall-Mount Cabinet",brand:"No preference",tags:["Enclosed wall-mount cabinet / rack","8–16U height","Lockable / secure enclosure","19-inch rack compatible","Wall-mount","Sufficient depth for switches and UPS"],desc:"8–16U enclosed lockable wall-mount cabinet with sufficient depth for switches and a UPS. Standard 19-inch rack compatible. For IDF/MDF closet deployments.",specs:{"Height":["8–16U"],"Mount":["Wall-mount"],"Rack":["19-inch std"],"Security":["Lockable"]}},
+      {name:"2U Horizontal Rack Cable Management Panel",brand:"No preference",tags:["2U rack cable management panel","19-inch rack compatible"],desc:"19-inch rack-mount 2U cable management panel for organizing, routing, and securing cabling in data and wiring closets. E-Rate eligible.",specs:{"Form":["2U rack-mount"],"Rack":["19-inch std"]}},
+      {name:"HPE 10G SFP+ DAC Cable (1m)",brand:"HPE",tags:["DAC cable (direct attach copper)","10G SFP+ DAC (1m)","Aruba CX 5420 compatible","Aruba CX 6200/6300/6400 compatible"],desc:"HPE 10G SFP+ direct attach copper cable, 1 meter. Used for short-range 10Gbps interconnection between switches or transceivers within the same rack.",specs:{"Speed":["10G"],"Length":["1m"],"Interface":["SFP+"]}},
+      {name:"HPE 50G SFP56 DAC Cable (0.65m)",brand:"HPE",tags:["DAC cable (direct attach copper)","50G SFP56 DAC (0.65m)","Aruba CX 5420 compatible","Aruba CX 6200/6300/6400 compatible"],desc:"HPE 50G SFP56 direct attach copper cable, 0.65 meter. Supports 50Gbps connectivity between compatible Aruba switch devices within the same rack.",specs:{"Speed":["50G"],"Length":["0.65m"],"Interface":["SFP56"]}},
+      {name:"SFP+ Optical Transceiver 10G (OM3)",brand:"No preference",tags:["SFP / SFP+ optical transceiver","OM3 compatible fiber transceiver","Universal / no preference"],desc:"10G SFP+ optical transceiver compatible with OM3 multi-mode fiber. Must be certified for use with proposed switch. Supports 10GbE connectivity over fiber.",specs:{"Speed":["10G"],"Fiber":["OM3 compatible"],"Interface":["SFP+"]}},
+      {name:"HPE SFP56 Expansion Module",brand:"HPE",tags:["SFP56 / 50G module","Aruba CX 5420 compatible","Aruba CX 6200/6300/6400 compatible"],desc:"HPE network expansion module providing high-density SFP56 optical interfaces for modular Aruba switches to increase LAN capacity.",specs:{"Interface":["SFP56 / 50G"],"Compatible":["Aruba CX modular"]}},
+      {name:"QSFP to SFP Adapter (Extreme 5720-48MW)",brand:"Extreme Networks",tags:["QSFP to SFP adapter","Extreme 5720-48MW compatible"],desc:"QSFP to SFP adapter compatible with Extreme 5720-48MW switch. Enables use of SFP modules in QSFP ports.",specs:{"Compatible":["Extreme 5720-48MW"],"Conversion":["QSFP → SFP"]}},
+      {name:"Aruba 1600W Switch Power Supply",brand:"HPE Aruba",tags:["Switch power supply module","1600W","Aruba CX 5420 compatible"],desc:"1600-watt redundant hot-swappable power supply module for Aruba CX 5420 switch chassis.",specs:{"Wattage":["1600W"],"Compatible":["Aruba CX 5420"],"Type":["Hot-swap redundant"]}},
+      {name:"HPE Aruba 6400 1800W Power Supply",brand:"HPE Aruba",tags:["Switch power supply module","1800W","Aruba CX 6200/6300/6400 compatible"],desc:"1800-watt redundant power supply for Aruba CX 6400 series switches.",specs:{"Wattage":["1800W"],"Compatible":["Aruba CX 6400"]}},
+      {name:"HPE Aruba X371 250W Power Supply",brand:"HPE Aruba",tags:["Switch power supply module","250W","Aruba CX 6200/6300/6400 compatible"],desc:"250-watt AC-to-DC power supply module for compatible Aruba network switches.",specs:{"Wattage":["250W"],"Compatible":["Aruba CX series"]}},
+      {name:"HPE Aruba 1050W Power Supply",brand:"HPE Aruba",tags:["Switch power supply module","1050W","Aruba CX 6200/6300/6400 compatible"],desc:"1050-watt AC power supply for compatible Aruba enterprise switches.",specs:{"Wattage":["1050W"],"Compatible":["Aruba CX series"]}}
+    ]
+  }
+};
+
+const ALL_TYPES = ['ap','sw','fw','ups','lic','acc','history'];
+const state = {};
+ALL_TYPES.forEach(t => { state[t] = {selected:{}}; });
+let activeTab = 'ap';
+
+function switchTab(t) {
+  activeTab = t;
+  // Update tab button styles — include cat1 and history
+  [...ALL_TYPES, 'cat1', 'history'].forEach(type => {
+    const tabEl = document.getElementById('tab-' + type);
+    if (tabEl) tabEl.className = 'tab' + (type === t ? ' active' : '');
+  });
+  // Show/hide panes — include cat1 and history
+  [...ALL_TYPES, 'cat1', 'history'].forEach(type => {
+    const paneEl = document.getElementById('pane-' + type);
+    if (paneEl) paneEl.style.display = type === t ? '' : 'none';
+  });
+}
+
+function buildFeats(type) {
+  const d = DATA[type];
+  const area = document.getElementById(type + '-feat-area');
+  area.innerHTML = d.groups.map((g, gi) => {
+    const opts = g.opts.map((o, oi) => {
+      const key = gi + '_' + oi;
+      const sel = state[type].selected[key];
+      const isOn = !!sel;
+      return `<div class="feat-item${isOn ? ' on' : ''}" id="${type}-fi-${key}" onclick="toggleItem('${type}','${key}',this)">
+        <input type="checkbox" ${isOn ? 'checked' : ''} onclick="event.stopPropagation();toggleItem('${type}','${key}',this.closest('.feat-item'))">
+        <div style="flex:1">
+          <label style="cursor:pointer">${o}</label>
+          ${isOn ? `<div class="importance-row">
+            <button class="imp-btn${sel==='required'?' req':''}" onclick="event.stopPropagation();setImportance('${type}','${key}','required')">Required</button>
+            <button class="imp-btn${sel==='preferred'?' pref':''}" onclick="event.stopPropagation();setImportance('${type}','${key}','preferred')">Preferred</button>
+          </div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+    return `<div class="feat-group"><div class="group-title">${g.label}</div><div class="feat-grid">${opts}</div></div>`;
+  }).join('');
+}
+
+function toggleItem(type, key, el) {
+  const s = state[type].selected;
+  if (s[key]) { delete s[key]; } else { s[key] = 'required'; }
+  buildFeats(type);
+  updateCount(type);
+  document.getElementById(type + '-results').innerHTML = '';
+}
+
+function setImportance(type, key, val) {
+  state[type].selected[key] = val;
+  buildFeats(type);
+}
+
+function getOptText(type, key) {
+  const [gi, oi] = key.split('_').map(Number);
+  return DATA[type].groups[gi].opts[oi];
+}
+
+function updateCount(type) {
+  const s = state[type].selected;
+  const total = Object.keys(s).length;
+  const req = Object.values(s).filter(v => v === 'required').length;
+  const pref = total - req;
+  const el = document.getElementById(type + '-count');
+  el.textContent = total === 0 ? '' : `${req} required, ${pref} preferred selected`;
+  document.getElementById(type + '-submit').disabled = total === 0;
+}
+
+function resetAllSelections() {
+  if (!confirm('Clear all hardware selections for all categories? This cannot be undone.')) return;
+  ALL_TYPES.filter(t => DATA[t]).forEach(type => {
+    state[type].selected = {};
+    buildFeats(type);
+    updateCount(type);
+    selections[type] = [];
+    renderSummaryTop(type);
+    document.getElementById(type + '-results').innerHTML = '';
+    const locEl = document.getElementById(type + '-location');
+    if (locEl) locEl.value = '';
+  });
+  // Clear RFP
+  const rfpDesc = document.getElementById('rfp-description');
+  if (rfpDesc) rfpDesc.value = '';
+  document.querySelectorAll('input[name="rfp-assistance"], input[name="rfp-review"]').forEach(el => el.checked = false);
+  // Clear cache
+  clearCache();
+  const banner = document.getElementById('restore-banner');
+  if (banner) banner.remove();
+}
+
+function clearAll(type) {
+  state[type].selected = {};
+  buildFeats(type);
+  updateCount(type);
+  document.getElementById(type + '-results').innerHTML = '';
+}
+
+function showResults(type) {
+  const s = state[type].selected;
+  const reqTags = Object.entries(s).filter(([k,v]) => v==='required').map(([k]) => getOptText(type, k));
+  const prefTags = Object.entries(s).filter(([k,v]) => v==='preferred').map(([k]) => getOptText(type, k));
+
+  const scored = DATA[type].products.map(p => {
+    const reqHit = reqTags.filter(t => p.tags.includes(t));
+    const reqMiss = reqTags.filter(t => !p.tags.includes(t));
+    const prefHit = prefTags.filter(t => p.tags.includes(t));
+    const prefMiss = prefTags.filter(t => !p.tags.includes(t));
+    const reqScore = reqTags.length > 0 ? reqHit.length / reqTags.length : 1;
+    const prefScore = prefTags.length > 0 ? prefHit.length / prefTags.length : 1;
+    const total = reqScore * 0.75 + prefScore * 0.25;
+    return {...p, reqHit, reqMiss, prefHit, prefMiss, total};
+  }).sort((a, b) => {
+    // Sort by score, break ties by original array order (avoid brand bias)
+    if (Math.abs(b.total - a.total) > 0.01) return b.total - a.total;
+    return 0;
+  }).filter(p => p.total > 0.1); // show all products with any match
+
+  const res = document.getElementById(type + '-results');
+
+  // Build selections summary
+  const typeSels = selections[type] || [];
+  const summaryHtml = typeSels.length ? `
+    <div class="card" id="${type}-selections-summary" style="border-color:var(--green-border,#c0dd97);background:var(--green-light,#eaf3de);margin-bottom:0">
+      <div style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--green,#27500a);margin-bottom:8px">
+        Selected products (${typeSels.length})
+      </div>
+      ${typeSels.map((sel, idx) => `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--green-border,#c0dd97);gap:10px">
+          <div style="font-size:13px;color:var(--text)">
+            <strong>${sel.name}</strong>
+            <span style="color:var(--text-secondary);margin-left:6px">${sel.brand}</span>
+            <span style="color:var(--text-secondary);margin-left:6px">Qty: ${sel.qty}</span>
+            ${sel.location ? `<span style="color:var(--text-secondary);margin-left:6px">· ${sel.location}</span>` : ''}
+          </div>
+          <button onclick="removeSelection('${type}',${idx})" style="font-size:12px;padding:4px 10px;border:0.5px solid var(--red-dark,#a32d2d);border-radius:var(--radius-sm);background:var(--red-light,#fcebeb);color:var(--red-dark,#a32d2d);cursor:pointer;white-space:nowrap;flex-shrink:0">
+            Remove
+          </button>
+        </div>`).join('')}
+    </div>` : '';
+
+  res.innerHTML = `<div class="divider"></div>
+    ${summaryHtml}
+    <div class="step-label" style="margin-top:1rem">Step 2 — recommendations</div>
+    <div class="section-title" style="margin-bottom:.75rem">${scored.length} matching product${scored.length!==1?"s":""}</div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#3b6d11"></div>Required feature matched</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#185fa5"></div>Preferred feature matched</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e24b4a"></div>Feature not available</div>
+    </div>` +
+    scored.map((p, i) => {
+      const pct = Math.round(p.total * 100);
+      const tier = pct >= 80 ? 'high' : pct >= 55 ? 'med' : 'low';
+      const isTop = i === 0;
+      const cardId = `sel-card-${type}-${i}`;
+      const allTags = [
+        ...p.reqHit.map(t => `<span class="tag tag-req-hit">${t}</span>`),
+        ...p.prefHit.map(t => `<span class="tag tag-pref-hit">${t}</span>`),
+        ...p.reqMiss.map(t => `<span class="tag tag-miss">${t}</span>`),
+        ...p.prefMiss.map(t => `<span class="tag tag-miss" style="opacity:.4">${t}</span>`)
+      ].join('');
+      const specHtml = Object.entries(p.specs).map(([k,vs]) => `<div class="spec-item"><strong>${k}</strong>${vs.join(', ')}</div>`).join('');
+      return `<div class="prod-card${isTop ? ' best' : ''}" id="${cardId}">
+        <div class="prod-head">
+          <div><div class="prod-name">${p.name}</div><div class="prod-brand">${p.brand}</div></div>
+          <span class="badge ${isTop ? 'badge-best' : 'badge-alt'}">${isTop ? 'Best match' : 'Option ' + (i+1)}</span>
+        </div>
+        <div class="score-row">
+          <div class="bar-bg"><div class="bar-fg ${tier}" style="width:${pct}%"></div></div>
+          <span class="score-pct ${tier}">${pct}%</span>
+        </div>
+        <div class="tag-row">${allTags}</div>
+        <div class="prod-desc">${p.desc}</div>
+        <div class="spec-grid">${specHtml}</div>
+        <div class="select-footer">
+          <span class="qty-label">Quantity:</span>
+          <input class="qty-input" type="number" min="1" value="1" id="qty-${cardId}">
+          <button class="btn-select" id="btn-${cardId}"
+            onclick="selectProduct('${type}','${cardId}','${p.name.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
+            Select this product
+          </button>
+          <span class="select-msg" id="msg-${cardId}"></span>
+        </div>
+      </div>`;
+    }).join('');
+
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderSummaryTop(type) {
+  const container = document.getElementById(type + '-summary-top');
+  const content   = document.getElementById(type + '-summary-top-content');
+  if (!container || !content) return;
+  const sels = selections[type] || [];
+  if (!sels.length) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.style.display = '';
+  const label = document.getElementById(type + '-summary-top-label');
+  if (label) label.textContent = `Selected products (${sels.length})`;
+  content.innerHTML = sels.map((sel, idx) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--green-border,#c0dd97);gap:10px">
+      <div style="font-size:13px;color:var(--text)">
+        <strong>${sel.name}</strong>
+        <span style="color:var(--text-secondary);margin-left:6px">${sel.brand}</span>
+        <span style="color:var(--text-secondary);margin-left:6px">Qty: ${sel.qty}</span>
+        ${sel.location ? `<span style="color:var(--text-secondary);margin-left:6px">· ${sel.location}</span>` : ''}
+      </div>
+      <button onclick="removeSelection('${type}',${idx})" style="font-size:12px;padding:4px 10px;border:0.5px solid var(--red-dark,#a32d2d);border-radius:var(--radius-sm);background:var(--red-light,#fcebeb);color:var(--red-dark,#a32d2d);cursor:pointer;white-space:nowrap;flex-shrink:0">
+        Remove
+      </button>
+    </div>`).join('');
+}
+
+const selections = {}; // tracks selections per type as arrays
+ALL_TYPES.forEach(t => { selections[t] = []; });
+
+async function selectProduct(type, cardId, name, brand) {
+  const qtyEl = document.getElementById('qty-' + cardId);
+  const btn   = document.getElementById('btn-' + cardId);
+  const msg   = document.getElementById('msg-' + cardId);
+  const qty   = parseInt(qtyEl.value) || 1;
+  if (qty < 1) { msg.textContent = 'Please enter a quantity of at least 1.'; return; }
+
+  btn.textContent = 'Saving…';
+  btn.disabled = true;
+
+  try {
+    await saveSelectionToSheet({ type, name, brand, qty });
+
+    // Mark this card as selected (allow multiple per type)
+    document.getElementById(cardId).classList.add('selected');
+    btn.textContent = '✓ Added';
+    btn.classList.add('selected-state');
+    btn.disabled = false;
+    msg.textContent = `Qty: ${qty} — saved`;
+    msg.style.color = 'var(--text-success,#27500a)';
+
+    // Track selection
+    if (!selections[type]) selections[type] = [];
+    const locEl    = document.getElementById(type + '-location');
+    const location = locEl ? locEl.value.trim() : '';
+    const exists   = selections[type].find(s => s.name === name && s.location === location);
+    if (!exists) selections[type].push({ name, brand, qty, location });
+
+    // Update top summary card
+    renderSummaryTop(type);
+
+    // Write to cache
+    const installEl = document.querySelector(`input[name="${type}-install"]:checked`);
+    const cacheData = readCache() || {};
+    if (!cacheData.selections) cacheData.selections = {};
+    if (!cacheData.locations)  cacheData.locations  = {};
+    if (!cacheData.installation) cacheData.installation = {};
+    cacheData.selections[type] = selections[type];
+    cacheData.locations[type]  = location;
+    if (installEl) cacheData.installation[type] = installEl.value;
+    writeCache(cacheData);
+
+  } catch(e) {
+    btn.textContent = 'Select this product';
+    btn.disabled = false;
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Could not save — check connection.';
+  }
+}
+
+async function saveSelectionToSheet({ type, name, brand, qty }) {
+  // Stub — overridden below with location + installation support
+}
+
+// ── Cache system ──────────────────────────────────────────────
+// Keyed by districtName + FISCAL_YEAR so it auto-invalidates when year changes
+
+function cacheKey() {
+  return `erate_cache_${districtName}_${FISCAL_YEAR}`;
+}
+
+function writeCache(updates) {
+  try {
+    const existing = readCache() || {};
+    const merged   = { ...existing, ...updates, _savedAt: Date.now() };
+    localStorage.setItem(cacheKey(), JSON.stringify(merged));
+  } catch(e) { /* localStorage may be unavailable */ }
+}
+
+function readCache() {
+  try {
+    const raw = localStorage.getItem(cacheKey());
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function clearCache() {
+  try { localStorage.removeItem(cacheKey()); } catch(e) {}
+}
+
+function restoreFromCache() {
+  const cache = readCache();
+  if (!cache) return;
+
+  // Small delay to ensure DOM is fully rendered
+  setTimeout(() => {
+    // Restore Cat1
+    if (cache.cat1) {
+      const radio = document.querySelector(`input[name="cat1-selection"][value="${cache.cat1}"]`);
+      if (radio) { radio.checked = true; selectCat1Option(radio); }
+    }
+
+    // Restore hardware selections, locations, installation
+    if (cache.selections) {
+      Object.entries(cache.selections).forEach(([type, sels]) => {
+        if (!sels || !sels.length) return;
+
+        // Restore location
+        if (cache.locations && cache.locations[type]) {
+          const locEl = document.getElementById(type + '-location');
+          if (locEl) locEl.value = cache.locations[type];
+        }
+
+        // Restore installation
+        if (cache.installation && cache.installation[type]) {
+          const installEl = document.querySelector(`input[name="${type}-install"][value="${cache.installation[type]}"]`);
+          if (installEl) installEl.checked = true;
+        }
+
+        // Restore selections array
+        if (!selections[type]) selections[type] = [];
+        sels.forEach(sel => {
+          if (!selections[type].find(s => s.name === sel.name && s.location === sel.location)) {
+            selections[type].push(sel);
+          }
+        });
+
+        // Update top summary card
+        renderSummaryTop(type);
+
+        // Also update results area if it has content
+        const res = document.getElementById(type + '-results');
+        if (res && res.innerHTML.trim()) showResults && null; // don't auto-run showResults
+      });
+    }
+
+    // Restore RFP
+    if (cache.rfp) {
+      if (cache.rfp.assistance) {
+        const el = document.querySelector(`input[name="rfp-assistance"][value="${cache.rfp.assistance}"]`);
+        if (el) el.checked = true;
+      }
+      if (cache.rfp.review) {
+        const el = document.querySelector(`input[name="rfp-review"][value="${cache.rfp.review}"]`);
+        if (el) el.checked = true;
+      }
+      if (cache.rfp.description) {
+        const el = document.getElementById('rfp-description');
+        if (el) el.value = cache.rfp.description;
+      }
+    }
+
+    // Show restore banner
+    const hasData = cache.cat1 || (cache.selections && Object.values(cache.selections).some(s => s && s.length)) || cache.rfp;
+    if (hasData) {
+      const existing = document.getElementById('restore-banner');
+      if (existing) existing.remove();
+      const banner = document.createElement('div');
+      banner.id = 'restore-banner';
+      banner.style.cssText = 'background:var(--blue-light);border:0.5px solid var(--border-info);border-radius:var(--radius-md);padding:.75rem 1rem;margin-bottom:1rem;font-size:13px;color:var(--text-info);display:flex;justify-content:space-between;align-items:center';
+      const savedDate = cache._savedAt ? new Date(cache._savedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}) : '';
+      banner.innerHTML = `<span>✓ Your previous work has been restored${savedDate ? ` (last saved ${savedDate})` : ''}. You can pick up where you left off.</span>
+        <button onclick="this.parentNode.remove()" style="background:none;border:none;cursor:pointer;color:var(--text-tertiary);font-size:16px;padding:0 4px">✕</button>`;
+      const container = document.getElementById('main-app');
+      if (container) container.prepend(banner);
+    }
+  }, 300);
+}
+
+
+async function removeSelection(type, idx) {
+  const sel = selections[type][idx];
+  if (!sel) return;
+
+  // Remove from local array
+  selections[type].splice(idx, 1);
+
+  // Update top summary card
+  renderSummaryTop(type);
+
+  // Update cache
+  const cacheData = readCache() || {};
+  if (cacheData.selections) cacheData.selections[type] = selections[type];
+  writeCache(cacheData);
+
+  // Remove from Google Sheet
+  try {
+    if (APPS_SCRIPT_URL !== 'YOUR_MASTER_APPS_SCRIPT_URL_HERE' && districtSheetId && districtSheetId !== 'demo') {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'removeSelection',
+          sheetId: districtSheetId,
+          districtName,
+          type,
+          name: sel.name
+        })
+      });
+    }
+  } catch(e) { /* silent — UI already updated */ }
+
+  // Refresh the results view if it's visible
+  const res = document.getElementById(type + '-results');
+  if (res && res.innerHTML) showResults(type);
+}
+const customProducts = {};
+const customTagState = {};
+ALL_TYPES.forEach(t => { customProducts[t] = []; customTagState[t] = new Set(); });
+
+function buildCustomTagPicker(type) {
+  if (!DATA[type]) return;
+  const allOpts = DATA[type].groups.flatMap(g => g.opts);
+  const container = document.getElementById(type + '-custom-tags');
+  if (!container) return;
+  container.innerHTML = allOpts.map(o => {
+    const on = customTagState[type].has(o);
+    return `<span onclick="toggleCustomTag('${type}','${o.replace(/'/g,"\\'")}')" style="font-size:12px;padding:3px 9px;border-radius:var(--radius-sm);cursor:pointer;border:0.5px solid ${on?'var(--blue)':'var(--border)'};background:${on?'var(--blue-light)':'var(--bg-secondary)'};color:${on?'var(--text-info)':'var(--text-secondary)'};user-select:none">${o}</span>`;
+  }).join('');
+}
+
+function toggleCustomTag(type, opt) {
+  if (customTagState[type].has(opt)) { customTagState[type].delete(opt); }
+  else { customTagState[type].add(opt); }
+  buildCustomTagPicker(type);
+}
+
+async function addCustomProduct(type) {
+  const name     = document.getElementById(type + '-custom-name').value.trim();
+  const brand    = document.getElementById(type + '-custom-brand').value.trim();
+  const desc     = document.getElementById(type + '-custom-desc').value.trim();
+  const added_by = document.getElementById(type + '-custom-addedby').value.trim();
+  const msg      = document.getElementById(type + '-custom-msg');
+  if (!name) { msg.textContent = 'Please enter a product name.'; msg.style.color = 'var(--red-dark)'; return; }
+
+  // Check for duplicate in current library
+  if (DATA[type].products.find(p => p.name.toLowerCase() === name.toLowerCase())) {
+    msg.textContent = `"${name}" is already in the library.`;
+    msg.style.color = 'var(--amber,#ba7517)';
+    return;
+  }
+
+  const tags = [...customTagState[type]];
+
+  msg.textContent = `Submitting "${name}" for review…`;
+  msg.style.color = 'var(--text-secondary)';
+
+  try {
+    await submitPendingProduct({ type, name, brand: brand || 'Custom entry', desc, tags, added_by });
+    // Show confirmation WITH submitted values still visible so user can verify
+    msg.innerHTML = `<span style="color:var(--text-success,#27500a)">✓ Submitted for review:</span>
+      <span style="color:var(--text-secondary);margin-left:6px"><strong>${name}</strong>${brand ? ' · ' + brand : ''}${desc ? ' · ' + desc : ''}${tags.length ? ' · Tags: ' + tags.join(', ') : ''}</span>
+      <button onclick="clearCustomForm('${type}')" style="margin-left:10px;font-size:11px;padding:2px 8px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-secondary);cursor:pointer">Clear form</button>`;
+  } catch(e) {
+    msg.textContent = `Could not reach library — submission not saved. Check your connection.`;
+    msg.style.color = 'var(--amber,#ba7517)';
+  }
+}
+
+function clearCustomForm(type) {
+  document.getElementById(type + '-custom-name').value = '';
+  document.getElementById(type + '-custom-brand').value = '';
+  document.getElementById(type + '-custom-desc').value = '';
+  document.getElementById(type + '-custom-addedby').value = '';
+  customTagState[type].clear();
+  buildCustomTagPicker(type);
+  const msg = document.getElementById(type + '-custom-msg');
+  if (msg) msg.innerHTML = '';
+}
+
+async function removeCustomProduct(type, idx) {
+  const prod = customProducts[type][idx];
+  customProducts[type].splice(idx, 1);
+  const di = DATA[type].products.findIndex(p => p === prod);
+  if (di !== -1) DATA[type].products.splice(di, 1);
+  renderCustomList(type);
+  try { await deleteProductFromSheet(type, prod.name); } catch(e) { /* silent */ }
+}
+
+function renderCustomList(type) {
+  if (!DATA[type]) return; // skip types with no product data (e.g. 'history')
+  const el = document.getElementById(type + '-custom-list');
+  if (!el) return;
+  const allShared = DATA[type].products.filter(p => p.shared);
+  if (!allShared.length) { el.innerHTML = ''; return; }
+  el.innerHTML = '<div style="font-size:12px;font-weight:500;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Shared library products</div>' +
+    allShared.map((p, i) =>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border:0.5px solid var(--border);border-radius:var(--radius-md);background:var(--bg-secondary);margin-bottom:5px;font-size:13px">
+        <div>
+          <strong style="color:var(--text)">${p.name}</strong>
+          <span style="color:var(--text-secondary);margin-left:6px">${p.brand}</span>
+          ${p.added_by ? `<span style="color:var(--text-tertiary);font-size:11px;margin-left:6px">added by ${p.added_by}</span>` : ''}
+        </div>
+        <button onclick="removeCustomProduct('${type}',${customProducts[type].indexOf(p)})" style="font-size:11px;padding:2px 8px;border:0.5px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-secondary);cursor:pointer">Remove</button>
+      </div>`
+    ).join('');
+}
+
+buildFeats('ap');
+buildFeats('sw');
+buildFeats('fw');
+buildFeats('ups');
+buildFeats('lic');
+buildFeats('acc');
+buildCustomTagPicker('ap');
+buildCustomTagPicker('sw');
+buildCustomTagPicker('fw');
+buildCustomTagPicker('ups');
+buildCustomTagPicker('lic');
+buildCustomTagPicker('acc');
+updateCount('ap');
+updateCount('sw');
+updateCount('fw');
+updateCount('ups');
+updateCount('lic');
+updateCount('acc');
+
+// Add refresh buttons to all custom cards
+ALL_TYPES.forEach(type => {
+  const statusEl = document.getElementById(type + '-library-status');
+  if (statusEl) {
+    const btn = document.createElement('button');
+    btn.textContent = '↺ Refresh library';
+    btn.style.cssText = 'font-size:11px;padding:2px 9px;border:0.5px solid var(--border-secondary);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-secondary);cursor:pointer;margin-left:8px';
+    btn.onclick = () => fetchSharedLibrary();
+    statusEl.parentNode.insertBefore(btn, statusEl.nextSibling);
+  }
+});
+
+// ── Category 1 handling ───────────────────────────────────────
+function selectCat1Option(radio) {
+  // Highlight selected option
+  ['cat1-opt1-label','cat1-opt2-label','cat1-opt3-label','cat1-opt4-label'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.borderColor = 'var(--border)';
+      el.style.background  = 'var(--bg)';
+    }
+  });
+  const selectedLabel = radio.closest('label');
+  if (selectedLabel) {
+    selectedLabel.style.borderColor = 'var(--blue)';
+    selectedLabel.style.background  = 'var(--blue-light)';
+  }
+}
+
+function handleCat1Choice(needed) {
+  document.getElementById('cat1-prompt-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = '';
+  if (needed) {
+    document.getElementById('tab-cat1').style.display = '';
+    switchTab('cat1');
+  } else {
+    document.getElementById('tab-cat1').style.display = 'none';
+    switchTab('ap');
+  }
+  // Restore cached UI state now that hardware tabs are visible
+  restoreFromCache();
+}
+
+async function saveCat1AndContinue() {
+  const msg      = document.getElementById('cat1-msg');
+  const selected = document.querySelector('input[name="cat1-selection"]:checked');
+
+  if (!selected) {
+    msg.style.color = 'var(--red-dark,#a32d2d)';
+    msg.textContent = 'Please select an option before continuing.';
+    return;
+  }
+
+  const optionLabels = {
+    option1: 'Option 1: Basic Internet Services',
+    option2: 'Option 2: Digital Transmission Services - ATM, DSL, Frame Relay',
+    option3: 'Option 3: Both Options',
+    option4: 'Option 4: Not applying for Category 1'
+  };
+
+  const data = {
+    selection: optionLabels[selected.value] || selected.value
+  };
+
+  // Write Cat1 choice to cache
+  writeCache({ cat1: selected.value });
+
+  msg.style.color = 'var(--text-secondary)';
+  msg.textContent = 'Saving…';
+
+  try {
+    if (APPS_SCRIPT_URL !== 'YOUR_MASTER_APPS_SCRIPT_URL_HERE' && districtSheetId && districtSheetId !== 'demo') {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'saveCat1', sheetId: districtSheetId, districtName, ...data })
+      });
+    }
+    msg.style.color = 'var(--text-success,#27500a)';
+    msg.textContent = '✓ Saved';
+    setTimeout(() => { switchTab('ap'); msg.textContent = ''; }, 800);
+  } catch(e) {
+    msg.style.color = 'var(--amber,#ba7517)';
+    msg.textContent = 'Could not save — proceeding anyway.';
+    setTimeout(() => { switchTab('ap'); msg.textContent = ''; }, 1200);
+  }
+}
+
+// ── Save location with selection ──────────────────────────────
+async function saveSelectionToSheet({ type, name, brand, qty }) {
+  if (!districtSheetId || districtSheetId === 'demo') return;
+  if (APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') return;
+  const locationEl  = document.getElementById(type + '-location');
+  const location    = locationEl ? locationEl.value.trim() : '';
+  const installEl   = document.querySelector(`input[name="${type}-install"]:checked`);
+  const installation = installEl ? installEl.value : '';
+  const res = await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'saveSelection',
+      sheetId: districtSheetId,
+      districtName,
+      type, name, brand, qty, location, installation
+    })
+  });
+  const json = await res.json();
+  if (!json.ok) throw new Error(json.error);
+}
+
+// ── RFP verbiage generation ───────────────────────────────────
+const CATEGORY_LABELS_RFP = {
+  ap:'Wireless Access Points', sw:'Network Switches', fw:'Firewall / NGFW',
+  ups:'Uninterruptible Power Supplies (UPS)', lic:'Software Licensing', acc:'Racks, Cabinets & Components'
+};
+
+// ── Save RFP information ──────────────────────────────────────
+async function saveRFP() {
+  const assistance  = document.querySelector('input[name="rfp-assistance"]:checked');
+  const review      = document.querySelector('input[name="rfp-review"]:checked');
+  const description = document.getElementById('rfp-description').value.trim();
+  const msg         = document.getElementById('rfp-save-msg');
+
+  const data = {
+    rfp_assistance:  assistance  ? assistance.value  : '',
+    rfp_review:      review      ? review.value      : '',
+    rfp_description: description
+  };
+
+  // Write RFP answers to cache
+  writeCache({ rfp: { assistance: data.rfp_assistance, review: data.rfp_review, description } });
+
+  msg.style.color = 'var(--text-secondary)';
+  msg.textContent = 'Saving…';
+
+  try {
+    if (APPS_SCRIPT_URL !== 'YOUR_MASTER_APPS_SCRIPT_URL_HERE' && districtSheetId && districtSheetId !== 'demo') {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'saveRFP', sheetId: districtSheetId, districtName, ...data })
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error);
+    }
+    msg.style.color = 'var(--text-success,#27500a)';
+    msg.textContent = '✓ RFP information saved.';
+    setTimeout(() => { msg.textContent = ''; }, 4000);
+  } catch(e) {
+    msg.style.color = 'var(--amber,#ba7517)';
+    msg.textContent = 'Could not save — check connection.';
+  }
+}
+// ── Past submissions ──────────────────────────────────────────
+const CATEGORY_LABELS_DISPLAY = {
+  'Wireless APs':'Wireless APs', 'Switches':'Switches', 'Firewall':'Firewall',
+  'UPS':'UPS', 'Licensing':'Licensing', 'Racks & Components':'Racks & Components'
+};
+
+async function loadPastSubmissions() {
+  const yearEl  = document.getElementById('history-year-select');
+  const status  = document.getElementById('history-status');
+  const content = document.getElementById('history-content');
+  const year    = yearEl.value;
+  if (!year) return;
+
+  if (!districtSheetId || APPS_SCRIPT_URL === 'YOUR_MASTER_APPS_SCRIPT_URL_HERE') {
+    content.innerHTML = '<div style="font-size:13px;color:var(--amber,#ba7517)">Connect to a district first.</div>';
+    return;
+  }
+
+  status.textContent  = `Loading ${year} submissions…`;
+  content.innerHTML   = '<div style="font-size:13px;color:var(--text-tertiary)">Loading…</div>';
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'getPastSubmissions',
+        districtName,
+        fiscalYear: year,
+        entityType: ENTITY_TYPE
+      })
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error);
+
+    status.textContent = '';
+
+    if (!json.selections || !json.selections.length) {
+      content.innerHTML = `<div style="font-size:13px;color:var(--text-tertiary);font-style:italic">No submissions found for ${districtName} in ${year}.</div>`;
+      return;
+    }
+
+    content.innerHTML = renderPastSubmissions(json.selections, year, json.contacts);
+  } catch(err) {
+    status.textContent = '';
+    content.innerHTML = `<div style="font-size:13px;color:var(--red-dark,#a32d2d)">Could not load past submissions: ${err.message}</div>`;
+  }
+}
+
+function renderPastSubmissions(selections, year, contacts) {
+  const contactHtml = contacts ? `
+    <div style="background:var(--blue-light);border:0.5px solid var(--border-info);border-radius:var(--radius-md);padding:.85rem 1rem;margin-bottom:1rem;font-size:13px">
+      <strong style="color:var(--text-info)">${year} Contacts on file:</strong>
+      <span style="color:var(--text-secondary);margin-left:8px">
+        EPC Admin: ${contacts.epc_name || '—'}
+        ${contacts.tech_name ? ` · Tech Support: ${contacts.tech_name}` : ''}
+        ${contacts.superintendent_name ? ` · Superintendent: ${contacts.superintendent_name}` : ''}
+      </span>
+    </div>` : '';
+
+  const tableRows = selections.map(s => `
+    <tr>
+      <td style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text-secondary)">${s.category || '—'}</td>
+      <td style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-size:13px;font-weight:500;color:var(--text)">${s.product_name || '—'}</td>
+      <td style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text-secondary)">${s.brand || '—'}</td>
+      <td style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text-secondary);text-align:center">${s.quantity || '—'}</td>
+      <td style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text-secondary)">${s.location || '—'}</td>
+    </tr>`).join('');
+
+  return `
+    ${contactHtml}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;font-weight:500;color:var(--text)">${selections.length} selection(s) found for ${year}</div>
+      <button class="btn btn-primary" onclick="copyToCurrentYear(${JSON.stringify(selections).replace(/"/g,'&quot;')})" style="font-size:13px;padding:7px 16px">
+        <i class="ti ti-copy" style="font-size:13px;margin-right:5px"></i>Copy to ${FISCAL_YEAR}
+      </button>
+    </div>
+    <div style="border:0.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden">
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:var(--bg-secondary)">
+            <th style="padding:8px 12px;text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);border-bottom:0.5px solid var(--border)">Category</th>
+            <th style="padding:8px 12px;text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);border-bottom:0.5px solid var(--border)">Product</th>
+            <th style="padding:8px 12px;text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);border-bottom:0.5px solid var(--border)">Brand</th>
+            <th style="padding:8px 12px;text-align:center;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);border-bottom:0.5px solid var(--border)">Qty</th>
+            <th style="padding:8px 12px;text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);border-bottom:0.5px solid var(--border)">Location</th>
+          </tr>
+        </thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>`;
+}
+
+function copyToCurrentYear(pastSelections) {
+  // Map category labels back to type keys
+  const CAT_TO_TYPE = {
+    'Wireless APs':'ap', 'Switches':'sw', 'Firewall':'fw',
+    'UPS':'ups', 'Licensing':'lic', 'Racks & Components':'acc'
+  };
+
+  let copied = 0;
+  pastSelections.forEach(sel => {
+    const type = CAT_TO_TYPE[sel.category];
+    if (!type) return;
+
+    // Pre-fill location textarea
+    const locEl = document.getElementById(type + '-location');
+    if (locEl && sel.location && !locEl.value) locEl.value = sel.location;
+
+    // Show a visual note on the relevant tab that past data is available
+    const tabEl = document.getElementById('tab-' + type);
+    if (tabEl && !tabEl.dataset.historyCopied) {
+      tabEl.dataset.historyCopied = '1';
+      const dot = document.createElement('span');
+      dot.textContent = ' ●';
+      dot.style.cssText = 'color:#27500a;font-size:10px';
+      dot.title = `${sel.product_name} was selected in ${document.getElementById('history-year-select').value}`;
+      tabEl.appendChild(dot);
+    }
+    copied++;
+  });
+
+  // Switch to AP tab to start reviewing
+  switchTab('ap');
+
+  // Show confirmation
+  const status = document.getElementById('history-status');
+  status.style.color = 'var(--text-success,#27500a)';
+  status.textContent = `✓ ${copied} location(s) copied — review each tab. Previous product names shown as reference in tab tooltips.`;
+
+  // Show inline past selection reference cards on each relevant tab
+  pastSelections.forEach(sel => {
+    const type = CAT_TO_TYPE[sel.category];
+    if (!type) return;
+    const resultsEl = document.getElementById(type + '-results');
+    if (!resultsEl) return;
+    // Only add reference banner if not already there
+    if (resultsEl.querySelector('.past-ref-banner')) return;
+    const banner = document.createElement('div');
+    banner.className = 'past-ref-banner';
+    banner.style.cssText = 'background:var(--green-light,#eaf3de);border:0.5px solid var(--green-border,#c0dd97);border-radius:var(--radius-md);padding:.7rem 1rem;margin-bottom:10px;font-size:13px;color:var(--green,#27500a)';
+    banner.innerHTML = `<strong>Previous year reference:</strong> ${sel.product_name} (${sel.brand}) — Qty: ${sel.quantity}${sel.location ? ` — ${sel.location}` : ''}`;
+    resultsEl.prepend(banner);
+  });
+}
+
+// Load shared library on startup
+fetchSharedLibrary();
+</script>
+</body>
+</html>
