@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willmar Public Schools - Device Enrollment</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        h1, h2 { color: #003087; }
+        .btn { display: inline-block; background-color: #003087; color: white; padding: 15px 30px; font-size: 1.2em; text-decoration: none; border-radius: 8px; margin: 15px 0; }
+        .note { background-color: #f0f0f0; padding: 15px; border-left: 5px solid #003087; }
+    </style>
+</head>
+<body>
+    <h1>Willmar Public Schools - Device Enrollment</h1>
+    
+    <p><strong>You are connected to the Enroll network</strong> (password: enroll2526)</p>
+
+    <h2>Step 1: Install the School Root Certificate</h2>
+    <a href="Willmar-Root-CA.cer" class="btn">📥 Download Willmar Root CA Certificate</a>
+
+    <h3>How to Install on Android / Pixel:</h3>
+    <ol>
+        <li>Open the <strong>Files</strong> app → <strong>Downloads</strong></li>
+        <li>Tap <strong>Willmar-Root-CA.cer</strong></li>
+        <li>Choose <strong>CA certificate</strong> (or Trusted credentials)</li>
+        <li>Tap <strong>Install</strong></li>
+    </ol>
+
+    <p class="note">If you get "private key required", go to:<br>
+    <strong>Settings → Security → Encryption & credentials → Install a certificate → CA certificate</strong>, then select the file.</p>
+
+    <h2>Step 2: Connect to the Secure Network</h2>
+    <ol>
+        <li>Forget the "Enroll" network</li>
+        <li>Select your <strong>Staff</strong> or <strong>Student</strong> network</li>
+        <li>Security: WPA2-Enterprise</li>
+        <li>EAP method: PEAP</li>
+        <li>Phase 2 authentication: MSCHAPv2</li>
+        <li>CA Certificate: Select the one you just installed (or Default)</li>
+        <li>Username: yourusername@willmar.k12.mn.us</li>
+        <li>Password: Your Willmar password</li>
+        <li>Tap Connect</li>
+    </ol>
+
+    <p class="note"><strong>You're done!</strong> Forget the Enroll network after connecting.</p>
+</body>
+</html>
