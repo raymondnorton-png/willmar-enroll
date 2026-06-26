@@ -16,27 +16,33 @@
     
     <p><strong>You are connected to the Enroll network</strong> (password: enroll2526)</p>
 
-    <h2>Step 1: Install the School Certificate</h2>
-    <a href="Willmar-RADIUS-Server.cer" class="btn">📥 Download Willmar RADIUS Certificate</a>
+    <h2>Step 1: Install the School Root Certificate</h2>
+    <a href="Willmar-Root-CA.cer" class="btn">📥 Download Willmar Root CA Certificate</a>
 
-    <h3>How to Install on Android:</h3>
+    <h3>How to Install on Android / Pixel:</h3>
     <ol>
         <li>Open the <strong>Files</strong> app → <strong>Downloads</strong></li>
-        <li>Tap <strong>Willmar-RADIUS-Server.cer</strong></li>
+        <li>Tap <strong>Willmar-Root-CA.cer</strong></li>
         <li>Choose <strong>CA certificate</strong> (or Trusted credentials)</li>
         <li>Tap <strong>Install</strong></li>
     </ol>
 
-    <p class="note">If you get a "private key needed" error, go to Settings → Security → Encryption & credentials → Install a certificate → CA certificate, then select the file.</p>
+    <p class="note">If you get "private key required", go to:<br>
+    <strong>Settings → Security → Encryption & credentials → Install a certificate → CA certificate</strong>, then select the file.</p>
 
     <h2>Step 2: Connect to the Secure Network</h2>
     <ol>
         <li>Forget the "Enroll" network</li>
-        <li>Select your Staff or Student network</li>
-        <li>Use PEAP + MSCHAPv2 and select the certificate you installed</li>
-        <li>Enter your Willmar username and password</li>
+        <li>Select your <strong>Staff</strong> or <strong>Student</strong> network</li>
+        <li>Security: WPA2-Enterprise</li>
+        <li>EAP method: PEAP</li>
+        <li>Phase 2 authentication: MSCHAPv2</li>
+        <li>CA Certificate: Select the one you just installed (or Default)</li>
+        <li>Username: yourusername@willmar.k12.mn.us</li>
+        <li>Password: Your Willmar password</li>
+        <li>Tap Connect</li>
     </ol>
 
-    <p><strong>You're done!</strong></p>
+    <p class="note"><strong>You're done!</strong> Forget the Enroll network after connecting.</p>
 </body>
 </html>
