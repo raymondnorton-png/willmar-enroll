@@ -16,35 +16,27 @@
     
     <p><strong>You are connected to the Enroll network</strong> (password: enroll2526)</p>
 
-    <h2>Step 1: Download & Install Certificate</h2>
+    <h2>Step 1: Install the School Certificate</h2>
     <a href="Willmar-RADIUS-Server.cer" class="btn">📥 Download Willmar RADIUS Certificate</a>
 
-    <p><strong>After downloading:</strong> Open the file and tap <strong>Install</strong> (choose Wi-Fi or VPN & apps if prompted).</p>
+    <h3>How to Install on Android:</h3>
+    <ol>
+        <li>Open the <strong>Files</strong> app → <strong>Downloads</strong></li>
+        <li>Tap <strong>Willmar-RADIUS-Server.cer</strong></li>
+        <li>Choose <strong>CA certificate</strong> (or Trusted credentials)</li>
+        <li>Tap <strong>Install</strong></li>
+    </ol>
 
-    <h2>Step 2: Connect to Staff / Student Network</h2>
+    <p class="note">If you get a "private key needed" error, go to Settings → Security → Encryption & credentials → Install a certificate → CA certificate, then select the file.</p>
 
-    <h3>On Android:</h3>
+    <h2>Step 2: Connect to the Secure Network</h2>
     <ol>
         <li>Forget the "Enroll" network</li>
-        <li>Go to Wi-Fi settings and select your main <strong>Staff</strong> or <strong>Student</strong> network</li>
-        <li>Choose <strong>WPA2-Enterprise</strong> (or WPA3-Enterprise)</li>
-        <li>EAP method: <strong>PEAP</strong></li>
-        <li>Phase 2 authentication: <strong>MSCHAPv2</strong></li>
-        <li>CA certificate: Select the certificate you just installed (or "Do not validate" / "Default")</li>
-        <li>Identity / Username: <strong>username@willmar.k12.mn.us</strong></li>
-        <li>Password: Your Willmar password</li>
-        <li>Tap Connect</li>
+        <li>Select your Staff or Student network</li>
+        <li>Use PEAP + MSCHAPv2 and select the certificate you installed</li>
+        <li>Enter your Willmar username and password</li>
     </ol>
 
-    <h3>On Chromebooks:</h3>
-    <ol>
-        <li>Click the clock → Settings → Network → Wi-Fi</li>
-        <li>Select your main Staff or Student network</li>
-        <li>Use the same settings as above</li>
-    </ol>
-
-    <p class="note"><strong>After connecting successfully:</strong> Forget the Enroll network.</p>
-
-    <p>If you run into issues, contact tech support.</p>
+    <p><strong>You're done!</strong></p>
 </body>
 </html>
